@@ -1,0 +1,49 @@
+import React from "react";
+import { Box, Button, Center, Heading, Text, VStack } from "@chakra-ui/react";
+import bg from "../assets/bg.jpg";
+import { useNavigate } from "react-router-dom";
+
+type Props = {};
+
+const Home = (props: Props) => {
+  const navigate = useNavigate();
+
+  return (
+    <Center>
+      <VStack width="80%" gap={3}>
+        <Box
+          sx={{
+            background: `center/cover url(${bg}) fixed no-repeat`,
+            position: "relative",
+            borderRadius: "1rem",
+            width: "100%",
+            height: "60vh",
+          }}
+        >
+          <Heading
+            color="brand.OrangeYellow"
+            className="menchi-title"
+            size="4xl"
+            sx={{
+              fontFamily: "var(--title-font)",
+              position: "absolute",
+              bottom: "2rem",
+              right: "2rem",
+            }}
+          >
+            Menchi
+          </Heading>
+        </Box>
+        <Box>
+          <Text>
+            Welcome to Menchi! The service that lets you find and adopt{" "}
+            <Text as="s">an emergency food source</Text> a companion for life!
+          </Text>
+        </Box>
+        <Button onClick={() => navigate("/search")}>Search for a pet</Button>
+      </VStack>
+    </Center>
+  );
+};
+
+export default Home;
