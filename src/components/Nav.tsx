@@ -4,9 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 
-type Props = {};
-
-const Nav = (props: Props) => {
+const Nav = () => {
   const [login, setLogin] = React.useState<boolean>(false);
   const [signup, setSignup] = React.useState<boolean>(false);
 

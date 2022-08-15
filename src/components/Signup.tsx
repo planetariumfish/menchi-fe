@@ -63,7 +63,7 @@ function Signup({ onClose, isOpen }: Props) {
         <ModalCloseButton />
         <ModalBody>
           <VStack gap={2}>
-            <FormControl isInvalid={invalid.email}>
+            <FormControl isInvalid={invalid.email} isRequired>
               <FormLabel htmlFor="firstname">First name:</FormLabel>
               <Input
                 type="text"

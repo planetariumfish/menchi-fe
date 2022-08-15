@@ -21,4 +21,4 @@ const fonts = {
   mono: "Menlo, monospace",
 };
 
-export default extendTheme({ colors });
+export default extendTheme({ colors, fonts });
