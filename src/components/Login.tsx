@@ -15,6 +15,8 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { LoginInfo } from "../schemas/user.zod";
+import axios from "axios";
 
 type Props = {
   onClose: () => void;
@@ -26,15 +28,23 @@ const Login = ({ onClose, isOpen }: Props) => {
     email: "",
     password: "",
   });
-  const [invalid, setInvalid] = React.useState({
-    email: false,
-    password: false,
-  });
 
-  const handleLogin = () => {
-    if (!loginInfo.email) setInvalid({ ...invalid, email: true });
-    if (!loginInfo.password) setInvalid({ ...invalid, password: true });
-    // => API POST call here - receive OK for "onClose"
+  const handleLogin = async () => {
+    // parse with Zod
+    const result = LoginInfo.safeParse(loginInfo);
+    if (!result.success) {
+      // do something to handle the error
+      console.log(result.error);
+    } else {
+      const login = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/login`,
+        result.data
+      ); // => API POST call here - receive OK for "onClose"
+      console.log(login.data);
+      // Get token from here
+      // Save token to localStorage
+      // get app to refresh the context?
+    }
   };
 
   return (
@@ -52,7 +62,7 @@ const Login = ({ onClose, isOpen }: Props) => {
         <ModalCloseButton />
         <ModalBody>
           <VStack gap={2}>
-            <FormControl isInvalid={invalid.email}>
+            <FormControl>
               <FormLabel htmlFor="email">Email:</FormLabel>
               <Input
                 type="email"
@@ -63,7 +73,7 @@ const Login = ({ onClose, isOpen }: Props) => {
                 }}
               />
             </FormControl>
-            <FormControl isInvalid={invalid.password}>
+            <FormControl>
               <FormLabel htmlFor="password">Password:</FormLabel>
               <Input
                 type="password"

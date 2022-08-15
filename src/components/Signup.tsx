@@ -45,6 +45,9 @@ function Signup({ onClose, isOpen }: Props) {
         result.data
       ); // => API POST call here - receive OK for "onClose"
       console.log(signup.data);
+      // get token from here
+      // save to localStorage
+      // refresh Context
     }
   };
 

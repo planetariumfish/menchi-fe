@@ -18,3 +18,8 @@ export const User = z.object({
   bio: z.string().optional(),
   photo: z.string().optional(),
 });
+
+export const LoginInfo = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});

@@ -1,12 +1,20 @@
-import { Box, Flex, Heading, HStack, Spacer, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  HStack,
+  Menu,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./Signup";
+import { ActiveUser } from "../contexts/contexts";
+import LoggedIn from "./LoggedIn";
+import LoggedOut from "./LoggedOut";
 
 const Nav = () => {
-  const [login, setLogin] = React.useState<boolean>(false);
-  const [signup, setSignup] = React.useState<boolean>(false);
+  const user = React.useContext(ActiveUser);
 
   return (
     <Flex
@@ -32,17 +40,7 @@ const Nav = () => {
         </Heading>
       </Link>
       <Spacer />
-      <HStack gap={1}>
-        <Box as="a" onClick={() => setLogin(true)}>
-          Login
-        </Box>
-        <Text>|</Text>
-        <Box as="a" onClick={() => setSignup(true)}>
-          Sign up
-        </Box>
-      </HStack>
-      {login && <Login onClose={() => setLogin(false)} isOpen={login} />}
-      {signup && <Signup onClose={() => setSignup(false)} isOpen={signup} />}
+      {user ? <LoggedIn /> : <LoggedOut />}
     </Flex>
   );
 };
