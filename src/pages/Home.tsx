@@ -2,18 +2,46 @@ import React from "react";
 import { Box, Button, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import bg from "../assets/bg.jpg";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { ActiveUser } from "../contexts/contexts";
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   const navigate = useNavigate();
+  const { userId } = React.useContext(ActiveUser);
+
+  const user = useQuery(["userInfo"], async () => {
+    const token = localStorage.getItem("token");
+    const result = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/users/${userId}`,
+      {
+        headers: {
+          "x-access-token": token || "",
+        },
+      }
+    );
+    return result.data;
+  });
 
   return (
     <Center>
       <VStack width="80%" gap={3}>
+        {userId && user.isSuccess && (
+          <Heading
+            size="xl"
+            sx={{
+              fontFamily: "var(--title-font)",
+            }}
+          >
+            Welcome,{" "}
+            <Text color="brand.Bittersweet" display="inline-flex">
+              {user.data.firstname} {user.data.lastname || ""}
+            </Text>
+          </Heading>
+        )}
         <Box
           sx={{
-            background: `center/cover url(${bg}) fixed no-repeat`,
+            background: `center/cover url(${bg}) no-repeat`,
             position: "relative",
             borderRadius: "1rem",
             width: "100%",

@@ -13,10 +13,11 @@ export const User = z.object({
   firstname: z.string(),
   lastname: z.string().optional(),
   email: z.string().email(),
-  // role: z.nativeEnum(Role), // where to get the enum from? (set on the DB)
+  role: z.string(), // is actually enum on BE
   phone: z.string().optional(),
   bio: z.string().optional(),
   photo: z.string().optional(),
+  returned: z.date().optional(),
 });
 
 export const LoginInfo = z.object({

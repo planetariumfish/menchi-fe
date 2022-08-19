@@ -1,20 +1,12 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  Menu,
-  Spacer,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Heading, Spacer } from "@chakra-ui/react";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ActiveUser } from "../contexts/contexts";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 
 const Nav = () => {
-  const user = React.useContext(ActiveUser);
+  const { userId } = React.useContext(ActiveUser);
 
   return (
     <Flex
@@ -40,7 +32,7 @@ const Nav = () => {
         </Heading>
       </Link>
       <Spacer />
-      {user ? <LoggedIn /> : <LoggedOut />}
+      {userId ? <LoggedIn /> : <LoggedOut />}
     </Flex>
   );
 };

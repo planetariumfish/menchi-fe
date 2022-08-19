@@ -1,5 +1,4 @@
-import { Box, Container } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
