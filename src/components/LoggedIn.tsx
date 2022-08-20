@@ -13,15 +13,17 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { TbLogout } from "react-icons/tb";
-import { FaBookmark, FaUser } from "react-icons/fa";
+import { FaBookmark, FaUser, FaSearch } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
 import { MdError } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { ActiveUser } from "../contexts/contexts";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoggedIn = () => {
   const { userId, setUserId } = React.useContext(ActiveUser);
+  const navigate = useNavigate();
 
   const user = useQuery(["userInfo"], async () => {
     const token = localStorage.getItem("token");
@@ -51,13 +53,20 @@ const LoggedIn = () => {
           aria-label={`${user.data.firstname} ${user.data.lastname}`}
           size="sm"
           bg="brand.OrangeYellow"
+          className="clickable"
         />
 
         <MenuList>
-          <MenuItem icon={<FaUser />}>Profile</MenuItem>
+          <MenuItem icon={<FaUser />} onClick={() => navigate("/profile")}>
+            Profile
+          </MenuItem>
           <MenuDivider />
           <MenuItem icon={<BsHeartFill />}>Your Pets</MenuItem>
           <MenuItem icon={<FaBookmark />}>Saved Pets</MenuItem>
+          <MenuDivider />
+          <MenuItem icon={<FaSearch />} onClick={() => navigate("/search")}>
+            Search for a pet
+          </MenuItem>
           <MenuDivider />
           <MenuItem icon={<TbLogout />} onClick={logout}>
             Logout

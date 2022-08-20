@@ -23,7 +23,7 @@ const Nav = () => {
       <Link to="/">
         <Heading
           color="brand.OrangeYellow"
-          size="md"
+          size="lg"
           sx={{
             fontFamily: "var(--title-font)",
           }}

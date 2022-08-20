@@ -53,3 +53,7 @@ a:hover {
   cursor: pointer;
   color: (--chakra-colors-brand-Bittersweet);
 }
+
+.clickable:hover {
+  cursor: pointer;
+}

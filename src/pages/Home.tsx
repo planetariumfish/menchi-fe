@@ -34,7 +34,12 @@ const Home = () => {
             }}
           >
             Welcome,{" "}
-            <Text color="brand.Bittersweet" display="inline-flex">
+            <Text
+              color="brand.Bittersweet"
+              display="inline-flex"
+              onClick={() => navigate("/profile")}
+              className="clickable"
+            >
               {user.data.firstname} {user.data.lastname || ""}
             </Text>
           </Heading>

@@ -19,16 +19,17 @@ const UserProvider = ({ children }: Props) => {
     React.useState<boolean>(false);
   const context = { userId, setUserId };
 
+  // Check for local saved user credentials on load and activate query if so
   useEffect(() => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     if (token && id) setUserPresentInLocalStorage(true);
   }, []);
 
+  // Whenever a user id gets kicked back to the context, save it locally
   useEffect(() => {
-    console.log("Storing User id!", userId);
     if (userId) localStorage.setItem("userId", userId);
-  }, [userId]);
+  }, []);
 
   const user = useQuery(
     ["userInfo"],
@@ -50,6 +51,7 @@ const UserProvider = ({ children }: Props) => {
       onSuccess: () => {
         if (user.data) setUserId(user.data.id);
       },
+      // clear localstorage if token is expired
       onError: () => {
         localStorage.clear();
         setUserId(null);

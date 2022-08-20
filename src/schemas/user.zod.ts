@@ -13,7 +13,7 @@ export const User = z.object({
   firstname: z.string(),
   lastname: z.string().optional(),
   email: z.string().email(),
-  role: z.string(), // is actually enum on BE
+  role: z.enum(["USER", "ADMIN"]),
   phone: z.string().optional(),
   bio: z.string().optional(),
   photo: z.string().optional(),
