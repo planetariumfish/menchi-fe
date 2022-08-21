@@ -2,31 +2,16 @@ import React from "react";
 import { Box, Button, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import bg from "../assets/bg.jpg";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { ActiveUser } from "../contexts/contexts";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { userId } = React.useContext(ActiveUser);
-
-  const user = useQuery(["userInfo"], async () => {
-    const token = localStorage.getItem("token");
-    const result = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/users/${userId}`,
-      {
-        headers: {
-          "x-access-token": token || "",
-        },
-      }
-    );
-    return result.data;
-  });
+  const { user } = React.useContext(ActiveUser);
 
   return (
     <Center>
       <VStack width="80%" gap={3}>
-        {userId && user.isSuccess && (
+        {user && (
           <Heading
             size="xl"
             sx={{
@@ -40,7 +25,7 @@ const Home = () => {
               onClick={() => navigate("/profile")}
               className="clickable"
             >
-              {user.data.firstname} {user.data.lastname || ""}
+              {user.firstname} {user.lastname || ""}
             </Text>
           </Heading>
         )}

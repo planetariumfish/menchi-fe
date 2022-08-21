@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ModalFooter,
   ModalBody,
@@ -15,7 +15,6 @@ import axios from "axios";
 import FormToggle from "./FormToggle";
 import { ActiveUser } from "../contexts/contexts";
 import { useMutation } from "@tanstack/react-query";
-import { SafeParseSuccess } from "zod";
 
 type Props = {
   toggle: () => void;
@@ -24,8 +23,7 @@ type Props = {
 };
 
 const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
-  const { userId, setUserId } = React.useContext(ActiveUser);
-  const [canClose, setCanClose] = React.useState<boolean>(false);
+  const { setToken } = React.useContext(ActiveUser);
 
   const [loginInfo, setLoginInfo] = React.useState({
     email: "",
@@ -38,9 +36,8 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
     },
     {
       onSuccess: (response) => {
-        setCanClose(true);
-        setUserId!(response.data.user);
-        localStorage.setItem("token", response.data.token);
+        if (setToken) setToken(response.data.token);
+        onClose();
       },
     }
   );
@@ -91,7 +88,6 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
         <Button
           onClick={async () => {
             await handleLogin();
-            if (canClose) onClose();
           }}
         >
           Login

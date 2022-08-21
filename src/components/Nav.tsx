@@ -6,11 +6,12 @@ import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 
 const Nav = () => {
-  const { userId } = React.useContext(ActiveUser);
+  const { user } = React.useContext(ActiveUser);
 
   return (
     <Flex
       justify="end"
+      align="center"
       bgColor="brand.Keppel"
       sx={{
         padding: "0.5rem 1rem",
@@ -32,7 +33,7 @@ const Nav = () => {
         </Heading>
       </Link>
       <Spacer />
-      {userId ? <LoggedIn /> : <LoggedOut />}
+      {user ? <LoggedIn /> : <LoggedOut />}
     </Flex>
   );
 };

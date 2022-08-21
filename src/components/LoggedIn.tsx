@@ -1,56 +1,34 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
   MenuDivider,
   Avatar,
-  Icon,
-  Spinner,
 } from "@chakra-ui/react";
 import { TbLogout } from "react-icons/tb";
 import { FaBookmark, FaUser, FaSearch } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
-import { MdError } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
 import { ActiveUser } from "../contexts/contexts";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const LoggedIn = () => {
-  const { userId, setUserId } = React.useContext(ActiveUser);
+  const { user, setUser, setToken } = React.useContext(ActiveUser);
   const navigate = useNavigate();
-
-  const user = useQuery(["userInfo"], async () => {
-    const token = localStorage.getItem("token");
-    const result = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/users/${userId}`,
-      {
-        headers: {
-          "x-access-token": token || "",
-        },
-      }
-    );
-    return result.data;
-  });
 
   const logout = () => {
     localStorage.clear();
-    setUserId!(null);
+    setToken!(null);
+    setUser!(null);
   };
 
-  if (user.isLoading) return <Spinner size="xs" />;
-
-  if (userId && user.isSuccess)
-    return (
+  return (
+    user && (
       <Menu>
         <MenuButton
           as={Avatar}
-          aria-label={`${user.data.firstname} ${user.data.lastname}`}
+          aria-label={`${user.firstname} ${user.lastname}`}
           size="sm"
           bg="brand.OrangeYellow"
           className="clickable"
@@ -73,9 +51,8 @@ const LoggedIn = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-    );
-  // also add tooltip to display error message
-  else return <Icon as={MdError} />;
+    )
+  );
 };
 
 export default LoggedIn;

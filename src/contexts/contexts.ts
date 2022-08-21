@@ -1,6 +1,8 @@
 import React, { createContext } from "react";
+import { User } from "../types/types";
 
 export const ActiveUser = createContext<{
-  userId: String | null;
-  setUserId: React.Dispatch<React.SetStateAction<string | null>> | null;
-}>({ userId: null, setUserId: null });
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>> | null;
+  setToken: React.Dispatch<React.SetStateAction<string | null>> | null;
+}>({ user: null, setUser: null, setToken: null });

@@ -7,15 +7,15 @@ import {
   ModalFooter,
   Button,
   Spacer,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ActiveUser } from "../contexts/contexts";
 import { NewUser as NewUserSchema } from "../schemas/user.zod";
 import { NewUser } from "../types/types";
 import FormToggle from "./FormToggle";
-import { SafeParseSuccess } from "zod";
 
 type Props = {
   toggle: () => void;
@@ -24,8 +24,8 @@ type Props = {
 };
 
 function SignupForm({ toggle, hasAccount, onClose }: Props) {
-  const { userId, setUserId } = React.useContext(ActiveUser);
   const [canClose, setCanClose] = React.useState<boolean>(false);
+  const { setToken } = React.useContext(ActiveUser);
 
   const [signupInfo, setSignupInfo] = React.useState({
     firstname: "",
@@ -41,6 +41,12 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
     repassword: false,
   });
 
+  useEffect(() => {
+    if (signupInfo.password !== signupInfo.repassword)
+      setInvalid({ ...invalid, repassword: true });
+    else setInvalid({ ...invalid, repassword: false });
+  }, [signupInfo.repassword]);
+
   const signup = useMutation(
     (data: NewUser) => {
       return axios.post(
@@ -51,8 +57,7 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
     {
       onSuccess: (response) => {
         setCanClose(true);
-        setUserId!(response.data);
-        localStorage.setItem("token", response.data.token);
+        setToken!(response.data.token);
       },
     }
   );
@@ -144,6 +149,9 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
                 setSignupInfo({ ...signupInfo, repassword: e.target.value });
               }}
             />
+            {invalid.repassword && (
+              <FormErrorMessage>Passwords must match</FormErrorMessage>
+            )}
           </FormControl>
         </VStack>
       </ModalBody>

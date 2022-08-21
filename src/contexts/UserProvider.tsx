@@ -1,47 +1,45 @@
 import React, { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ActiveUser } from "./contexts";
 import axios from "axios";
+import { User } from "../types/types";
 
 type Props = {
   children?: React.ReactNode;
 };
 
 // Notes:
-//  Should save userId to localStorage when it gets one
-//  When it finds one on load, should try to fetch user info from server using stored token (if any)
+//  Get token from localStorage if any and tries to validate on BE
 //  if token is valid, should set the app state to logged in
-//  CURRENT STATUS: unreliable (works sometimes though. why?)
+//  CURRENT STATUS: it does work on reload, doesn't rerender on login! >.<#
 
 const UserProvider = ({ children }: Props) => {
-  const [userId, setUserId] = React.useState<string | null>(null);
-  const [userPresentInLocalStorage, setUserPresentInLocalStorage] =
-    React.useState<boolean>(false);
-  const context = { userId, setUserId };
+  const [user, setUser] = React.useState<User | null>(null);
+  const [token, setToken] = React.useState<string | null>(null);
+  const context = { user, setUser, setToken };
+  const queryClient = useQueryClient();
+
+  // Save token to localStorage when received
+  useEffect(() => {
+    if (token) localStorage.setItem("token", token);
+    if (!token) queryClient.clear();
+  }, [token]);
 
   // Check for local saved user credentials on load and activate query if so
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const id = localStorage.getItem("userId");
-    if (token && id) setUserPresentInLocalStorage(true);
+    if (token) setToken(token);
   }, []);
 
-  // Whenever a user id gets kicked back to the context, save it locally
-  useEffect(() => {
-    if (userId) localStorage.setItem("userId", userId);
-  }, []);
-
-  const user = useQuery(
+  const userInfo = useQuery(
     ["userInfo"],
     async () => {
-      const token = localStorage.getItem("token");
-      const id = localStorage.getItem("userId");
-
+      const t = token;
       const result = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/users/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/users/`,
         {
           headers: {
-            "x-access-token": token || "",
+            "x-access-token": t || "",
           },
         }
       );
@@ -49,14 +47,15 @@ const UserProvider = ({ children }: Props) => {
     },
     {
       onSuccess: () => {
-        if (user.data) setUserId(user.data.id);
+        if (userInfo.data) setUser(userInfo.data);
       },
       // clear localstorage if token is expired
       onError: () => {
         localStorage.clear();
-        setUserId(null);
+        setToken(null);
+        setUser(null);
       },
-      enabled: userPresentInLocalStorage,
+      enabled: !!token,
     }
   );
 
