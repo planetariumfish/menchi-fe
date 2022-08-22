@@ -9,7 +9,7 @@ import {
   Spacer,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import axios from "axios";
+import axios from "../utils/axiosClient";
 import React, { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ActiveUser } from "../contexts/contexts";

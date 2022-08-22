@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   ModalFooter,
   ModalBody,
@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { LoginInfo as LoginInfoSchema } from "../schemas/user.zod";
 import { LoginInfo } from "../types/types";
-import axios from "axios";
+import axios from "../utils/axiosClient";
 import FormToggle from "./FormToggle";
 import { ActiveUser } from "../contexts/contexts";
 import { useMutation } from "@tanstack/react-query";
@@ -32,7 +32,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
 
   const login = useMutation(
     (data: LoginInfo) => {
-      return axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, data);
+      return axios.post("/users/login", data);
     },
     {
       onSuccess: (response) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { ChangePassword } from "../../types/types";
 import { ChangePassword as ChangePasswordSchema } from "../../schemas/user.zod";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import axios from "../../utils/axiosClient";
 import { ActiveUser } from "../../contexts/contexts";
 import {
   Button,
@@ -25,20 +25,11 @@ const ChangePasswordForm = (props: Props) => {
       password: "",
       repassword: "",
     });
-  const { token } = React.useContext(ActiveUser);
   const toast = useToast();
 
   const changePassword = useMutation(
     (data: ChangePassword) => {
-      return axios.put(
-        `${import.meta.env.VITE_BASE_URL}/users/changepwd`,
-        data,
-        {
-          headers: {
-            "x-access-token": token || "",
-          },
-        }
-      );
+      return axios.put("/users/changepwd", data);
     },
     {
       onSuccess: (response) => {

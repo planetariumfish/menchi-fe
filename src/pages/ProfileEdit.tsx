@@ -13,7 +13,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import axios from "axios";
+import axios from "../utils/axiosClient";
 import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ActiveUser } from "../contexts/contexts";
@@ -23,18 +23,14 @@ import ChangePasswordForm from "../components/profile/ChangePasswordForm";
 import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = () => {
-  const { user, token } = React.useContext(ActiveUser);
+  const { user } = React.useContext(ActiveUser);
   const [updatedInfo, setUpdatedInfo] = React.useState(user);
   const navigate = useNavigate();
   const toast = useToast();
 
   const editProfile = useMutation(
     (data: User) => {
-      return axios.put(`${import.meta.env.VITE_BASE_URL}/users/edit`, data, {
-        headers: {
-          "x-access-token": token || "",
-        },
-      });
+      return axios.put("/users/edit", data);
     },
     {
       onSuccess: (response) => {
