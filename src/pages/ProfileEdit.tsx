@@ -51,7 +51,6 @@ const ProfileEdit = () => {
   );
 
   const handleEdit = async () => {
-    console.log(updatedInfo);
     const result = UserSchema.safeParse(updatedInfo);
     if (!result.success) {
       // do something to handle the error
