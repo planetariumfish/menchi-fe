@@ -57,3 +57,7 @@ a:hover {
 .clickable:hover {
   cursor: pointer;
 }
+
+.chakra-button:active {
+  transform: scale(0.95);
+}

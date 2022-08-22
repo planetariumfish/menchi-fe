@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import AdminRoute from "./components/routes/AdminRoute";
 import LoggedInRoute from "./components/routes/LoggedInRoute";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import ProfileEdit from "./pages/ProfileEdit";
@@ -20,7 +21,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
         </Route>
-        <Route element={<AdminRoute />}></Route>
+        <Route element={<AdminRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
       <Box sx={{ height: "2rem" }} />
     </Box>

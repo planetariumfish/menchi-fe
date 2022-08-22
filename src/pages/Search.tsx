@@ -31,6 +31,7 @@ const Search = () => {
     weight: 0,
     name: "",
   });
+  const [searchType, setSearchType] = React.useState();
   const [metric, setMetric] = React.useState(true);
 
   // Checking the search object. DON'T FORGET TO REMOVE

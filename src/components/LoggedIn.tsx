@@ -8,7 +8,7 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import { TbLogout } from "react-icons/tb";
-import { FaBookmark, FaUser, FaSearch } from "react-icons/fa";
+import { FaBookmark, FaUser, FaSearch, FaDragon } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
 import { ActiveUser } from "../contexts/contexts";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +46,17 @@ const LoggedIn = () => {
             Search for a pet
           </MenuItem>
           <MenuDivider />
+          {user.role === "ADMIN" && (
+            <>
+              <MenuItem
+                icon={<FaDragon />}
+                onClick={() => navigate("/dashboard")}
+              >
+                Admin Dashboard
+              </MenuItem>
+              <MenuDivider />
+            </>
+          )}
           <MenuItem icon={<TbLogout />} onClick={logout}>
             Logout
           </MenuItem>
