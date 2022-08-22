@@ -11,16 +11,22 @@ export const NewUser = z.object({
 export const User = z.object({
   id: z.string().uuid(),
   firstname: z.string(),
-  lastname: z.string().optional(),
+  lastname: z.string().or(z.null()),
   email: z.string().email(),
   role: z.enum(["USER", "ADMIN"]),
-  phone: z.string().optional(),
-  bio: z.string().optional(),
-  photo: z.string().optional(),
-  returned: z.date().optional(),
+  phone: z.string().or(z.null()),
+  bio: z.string().max(400).or(z.null()),
+  photo: z.string().or(z.null()),
+  returned: z.date().or(z.null()),
 });
 
 export const LoginInfo = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+});
+
+export const ChangePassword = z.object({
+  oldpassword: z.string().min(8),
+  password: z.string().min(8),
+  repassword: z.string().min(8),
 });

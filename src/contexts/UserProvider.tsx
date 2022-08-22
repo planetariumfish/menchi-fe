@@ -16,7 +16,7 @@ type Props = {
 const UserProvider = ({ children }: Props) => {
   const [user, setUser] = React.useState<User | null>(null);
   const [token, setToken] = React.useState<string | null>(null);
-  const context = { user, setUser, setToken };
+  const context = { user, setUser, token, setToken };
   const queryClient = useQueryClient();
 
   // Save token to localStorage when received

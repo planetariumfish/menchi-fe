@@ -47,7 +47,6 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
     if (!result.success) {
       // do something to handle the error
       console.log(result.error);
-      return false;
     } else {
       login.mutate(result.data);
     }

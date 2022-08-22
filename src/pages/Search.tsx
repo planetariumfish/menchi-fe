@@ -59,7 +59,7 @@ const Search = () => {
 
   return (
     <Center>
-      <VStack gap={5}>
+      <VStack gap={5} width="80%">
         <Heading
           color="brand.Bittersweet"
           sx={{

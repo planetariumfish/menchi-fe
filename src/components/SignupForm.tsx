@@ -66,13 +66,14 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
     const result = NewUserSchema.safeParse(signupInfo);
     if (!result.success) {
       // do something to handle the error
+      // TODO: form (in)validation should be done here
       console.log(result.error);
-      return false;
     } else {
       signup.mutate(result.data);
     }
   };
 
+  // TODO: move this into handleSignup (!result.success) clause
   const checkInput = () => {
     if (!signupInfo.email) setInvalid({ ...invalid, email: true });
     if (!signupInfo.firstname) setInvalid({ ...invalid, firstname: true });
