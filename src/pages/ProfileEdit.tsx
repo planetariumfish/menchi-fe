@@ -10,6 +10,7 @@ import {
   Input,
   Spacer,
   Textarea,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -25,6 +26,7 @@ const ProfileEdit = () => {
   const { user, token } = React.useContext(ActiveUser);
   const [updatedInfo, setUpdatedInfo] = React.useState(user);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const editProfile = useMutation(
     (data: User) => {
@@ -37,6 +39,12 @@ const ProfileEdit = () => {
     {
       onSuccess: (response) => {
         console.log(response.data);
+        toast({
+          description: response.data,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         navigate("/profile");
       },
     }

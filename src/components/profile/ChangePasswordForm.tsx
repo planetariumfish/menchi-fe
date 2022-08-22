@@ -12,6 +12,7 @@ import {
   HStack,
   Input,
   Spacer,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 
@@ -19,8 +20,13 @@ type Props = {};
 
 const ChangePasswordForm = (props: Props) => {
   const [passwordChangeInfo, setPasswordChangeInfo] =
-    React.useState<ChangePassword | null>();
+    React.useState<ChangePassword>({
+      oldpassword: "",
+      password: "",
+      repassword: "",
+    });
   const { token } = React.useContext(ActiveUser);
+  const toast = useToast();
 
   const changePassword = useMutation(
     (data: ChangePassword) => {
@@ -36,7 +42,17 @@ const ChangePasswordForm = (props: Props) => {
     },
     {
       onSuccess: (response) => {
-        console.log(response.data);
+        setPasswordChangeInfo({
+          oldpassword: "",
+          password: "",
+          repassword: "",
+        });
+        toast({
+          description: response.data,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
       },
     }
   );
@@ -114,7 +130,8 @@ const ChangePasswordForm = (props: Props) => {
         />
       </FormControl>
       <HStack width="100%">
-        <Spacer /> <Button>Change password</Button>
+        <Spacer />
+        <Button onClick={handlePasswordChange}>Change password</Button>
       </HStack>
     </VStack>
   );

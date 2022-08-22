@@ -26,12 +26,14 @@ Done:
 - Logout
 - User menu
 - Search page advanced search form
+- User profile page (+ edit functionality, now with extra toast)
 
 To do:
 
 - Toggle basic and advanced search
+- Change height/weight search input to ranges
 - Pet list and pet card components
-- User profile page (+ edit functionality)
+- Uploading user avatar image
 - Admin dashboard
 
 ## Known Issues

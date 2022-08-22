@@ -57,12 +57,12 @@ const Profile = (props: Props) => {
                 <Text display="inline">{user.email}</Text>
               </HStack>
               <HStack gap={2}>
-                <Text as="b">Phone:</Text>{" "}
-                {user.phone || <Text as="i">none</Text>}
+                <Text as="b">Phone:</Text>
+                <Text>{user.phone || <Text as="i">none</Text>}</Text>
               </HStack>
               <HStack gap={2} align="start">
                 <Text as="b">Bio:</Text>
-                {<Text>{user.bio}</Text> || <Text as="i">none</Text>}
+                <Text>{user.bio || <Text as="i">none</Text>}</Text>
               </HStack>
               <HStack gap={2}>
                 <Text as="b">Can adopt a pet?</Text>
