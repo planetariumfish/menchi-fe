@@ -13,6 +13,7 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import UploadAvatar from "../components/profile/UploadAvatar";
 import { ActiveUser } from "../contexts/contexts";
 
 type Props = {};
@@ -20,9 +21,10 @@ type Props = {};
 const Profile = (props: Props) => {
   const { user } = React.useContext(ActiveUser);
   const navigate = useNavigate();
+  const [uploadAvatar, setUploadAvatar] = React.useState(false);
 
   const handleAvatarEdit = () => {
-    // open modal with file picker to upload image
+    setUploadAvatar(true);
   };
 
   return (
@@ -38,6 +40,7 @@ const Profile = (props: Props) => {
         </Heading>
         {user && (
           <HStack gap={5} width="60vw" align="start">
+            {/* Avatar doesn't immediately update, check context */}
             <Avatar
               size="2xl"
               bg="brand.RocketMetallic"
@@ -89,6 +92,12 @@ const Profile = (props: Props) => {
           </HStack>
         )}
       </VStack>
+      {uploadAvatar && (
+        <UploadAvatar
+          isOpen={uploadAvatar}
+          onClose={() => setUploadAvatar(false)}
+        />
+      )}
     </Center>
   );
 };

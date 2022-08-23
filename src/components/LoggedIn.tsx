@@ -32,6 +32,7 @@ const LoggedIn = () => {
           size="sm"
           bg="brand.OrangeYellow"
           className="clickable"
+          src={user.photo || ""}
         />
 
         <MenuList>

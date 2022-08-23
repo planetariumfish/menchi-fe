@@ -30,13 +30,13 @@ const ProfileEdit = () => {
 
   const editProfile = useMutation(
     (data: User) => {
-      return axios.put("/users/edit", data);
+      return axios().put("/users/edit", data);
     },
     {
       onSuccess: (response) => {
         console.log(response.data);
         toast({
-          description: response.data,
+          description: response.data.message,
           status: "success",
           duration: 9000,
           isClosable: true,

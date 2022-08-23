@@ -49,10 +49,7 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
 
   const signup = useMutation(
     (data: NewUser) => {
-      return axios.post(
-        `${import.meta.env.VITE_BASE_URL}/users/register`,
-        data
-      );
+      return axios().post("/users/register", data);
     },
     {
       onSuccess: (response) => {

@@ -13,6 +13,7 @@ Set up using:
 - [Chakra-UI](http://chakra-ui.com): v2.2.6
 - [Zod](https://github.com/colinhacks/zod): v3.18.0
 - [Tanstack React-Query](https://tanstack.com/query/v4): v4.2.1
+- [Tanstack React Table](https://tanstack.com/table/v8): v8.5.11
 - [Vite](https://vitejs.dev): v3.0.0
 
 ## Status
@@ -27,17 +28,17 @@ Done:
 - User menu
 - Search page advanced search form
 - User profile page (+ edit functionality, now with extra toast)
+- Users can now upload profile photo
 
 To do:
 
 - Toggle basic and advanced search
 - Change height/weight search input to ranges
 - Pet list and pet card components
-- Uploading user avatar image
 - Admin dashboard
 
 ## Known Issues
 
 Non-show-stopping bugs:
 
-- Context does not immediately load user info on login/signup. (React-query kicks in late?)
+- Profile photo doesn't immediately re-render on upload. Check context.

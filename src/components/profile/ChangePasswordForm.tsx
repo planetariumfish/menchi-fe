@@ -3,7 +3,6 @@ import { ChangePassword } from "../../types/types";
 import { ChangePassword as ChangePasswordSchema } from "../../schemas/user.zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "../../utils/axiosClient";
-import { ActiveUser } from "../../contexts/contexts";
 import {
   Button,
   FormControl,
@@ -29,7 +28,7 @@ const ChangePasswordForm = (props: Props) => {
 
   const changePassword = useMutation(
     (data: ChangePassword) => {
-      return axios.put("/users/changepwd", data);
+      return axios().put("/users/changepwd", data);
     },
     {
       onSuccess: (response) => {
@@ -39,7 +38,7 @@ const ChangePasswordForm = (props: Props) => {
           repassword: "",
         });
         toast({
-          description: response.data,
+          description: response.data.message,
           status: "success",
           duration: 9000,
           isClosable: true,

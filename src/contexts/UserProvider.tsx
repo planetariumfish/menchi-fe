@@ -28,7 +28,7 @@ const UserProvider = ({ children }: Props) => {
   const { data, isLoading } = useQuery(
     ["userInfo"],
     async () => {
-      const result = await axios.get("/users");
+      const result = await axios().get("/users");
       return result.data;
     },
     {

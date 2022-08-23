@@ -32,7 +32,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
 
   const login = useMutation(
     (data: LoginInfo) => {
-      return axios.post("/users/login", data);
+      return axios().post("/users/login", data);
     },
     {
       onSuccess: (response) => {

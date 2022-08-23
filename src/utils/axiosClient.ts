@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-export default axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
-  headers: {
-    "x-access-token": token || "",
-  },
-});
+export default () => {
+  const instance = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL,
+  });
+
+  const token = localStorage.getItem("token");
+
+  instance.defaults.headers.common["x-access-token"] = token || "";
+
+  return instance;
+};
