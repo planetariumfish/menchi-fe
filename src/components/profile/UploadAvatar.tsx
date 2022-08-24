@@ -1,7 +1,6 @@
 import {
   Button,
   FormErrorMessage,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -23,7 +22,7 @@ type Props = {
 };
 
 const UploadAvatar = ({ isOpen, onClose }: Props) => {
-  const { user } = React.useContext(ActiveUser);
+  const { user, refetch } = React.useContext(ActiveUser);
   const [file, setFile] = React.useState<File | null>();
   const [invalid, setInvalid] = React.useState(false);
   const toast = useToast();
@@ -42,6 +41,7 @@ const UploadAvatar = ({ isOpen, onClose }: Props) => {
         });
         setFile(null);
         onClose();
+        if (refetch) refetch();
       },
     }
   );
@@ -88,7 +88,9 @@ const UploadAvatar = ({ isOpen, onClose }: Props) => {
           )}
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleSubmit}>Upload</Button>
+          <Button onClick={handleSubmit} isLoading={upload.isLoading}>
+            Upload
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

@@ -25,7 +25,7 @@ const UserProvider = ({ children }: Props) => {
     if (token) setToken(token);
   }, []);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ["userInfo"],
     async () => {
       const result = await axios().get("/users");
@@ -46,7 +46,9 @@ const UserProvider = ({ children }: Props) => {
   );
 
   return (
-    <ActiveUser.Provider value={{ user, setUser, setToken, isLoading }}>
+    <ActiveUser.Provider
+      value={{ user, setUser, setToken, isLoading, refetch }}
+    >
       {children}
     </ActiveUser.Provider>
   );
