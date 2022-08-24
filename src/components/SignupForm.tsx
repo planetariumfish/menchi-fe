@@ -25,7 +25,7 @@ type Props = {
 
 function SignupForm({ toggle, hasAccount, onClose }: Props) {
   const [canClose, setCanClose] = React.useState<boolean>(false);
-  const { setToken } = React.useContext(ActiveUser);
+  const { setUserId } = React.useContext(ActiveUser);
 
   const [signupInfo, setSignupInfo] = React.useState({
     firstname: "",
@@ -49,12 +49,12 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
 
   const signup = useMutation(
     (data: NewUser) => {
-      return axios().post("/users/register", data);
+      return axios.post("/users/register", data);
     },
     {
       onSuccess: (response) => {
         setCanClose(true);
-        setToken!(response.data.token);
+        setUserId!(response.data.id);
       },
     }
   );

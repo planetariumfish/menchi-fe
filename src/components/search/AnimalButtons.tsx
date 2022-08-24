@@ -8,7 +8,7 @@ import {
   GiEgyptianBird,
   GiRabbit,
 } from "react-icons/gi";
-import { AnimalType } from "../types/enums";
+import { AnimalType } from "../../types/enums";
 import { FerretIcon } from "./FerretIcon";
 
 type Props = {

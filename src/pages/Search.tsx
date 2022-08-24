@@ -18,8 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { AnimalType, Status } from "../types/enums";
 import React from "react";
-import AnimalButtons from "../components/AnimalButtons";
-import axios from "axios";
+import AnimalButtons from "../components/search/AnimalButtons";
+import axios from "../utils/axiosClient";
 
 // TODO: Make this responsive
 
@@ -27,11 +27,11 @@ const Search = () => {
   const [search, setSearch] = React.useState({
     animalType: AnimalType.ALL,
     status: Status.ANY,
-    height: 0,
-    weight: 0,
+    height: 0, // change to array for min/max range
+    weight: 0, // change to array for min/max range
     name: "",
+    advanced: false,
   });
-  const [searchType, setSearchType] = React.useState();
   const [metric, setMetric] = React.useState(true);
 
   // Checking the search object. DON'T FORGET TO REMOVE
@@ -50,11 +50,7 @@ const Search = () => {
   };
 
   const onSearch = async () => {
-    // build the query
-    const queryParams = `?animalType=${search.animalType}&status=${search.status}&height=${search.height}&weight=${search.weight}&name=${search.name}`;
-    const searchQuery = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/pets/${queryParams}`
-    );
+    const searchQuery = await axios.get("/pets/", { params: search });
     console.log(searchQuery.data);
   };
 

@@ -39,6 +39,4 @@ To do:
 
 ## Known Issues
 
-Non-show-stopping bugs:
-
-- Profile photo doesn't immediately re-render on upload. Check context.
+Safari blocks 3rd party cookies by default, so now login doesn't work on it if back-end runs on a different port.

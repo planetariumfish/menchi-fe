@@ -40,12 +40,14 @@ const Profile = (props: Props) => {
         </Heading>
         {user && (
           <HStack gap={5} width="60vw" align="start">
-            {/* Avatar doesn't immediately update, check context */}
             <Avatar
               size="2xl"
               bg="brand.RocketMetallic"
               src={user.photo || ""}
-              onClick={handleAvatarEdit}
+              onClick={() => {
+                handleAvatarEdit();
+                console.log(user.photo);
+              }}
               className="clickable"
             />
             <VStack align="flex-start" width="100%">

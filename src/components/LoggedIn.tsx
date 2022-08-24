@@ -12,14 +12,15 @@ import { FaBookmark, FaUser, FaSearch, FaDragon } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
 import { ActiveUser } from "../contexts/contexts";
 import { useNavigate } from "react-router-dom";
+import axios from "../utils/axiosClient";
 
 const LoggedIn = () => {
-  const { user, setUser, setToken } = React.useContext(ActiveUser);
+  const { user, setUser, setUserId } = React.useContext(ActiveUser);
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
-    setToken!(null);
+    setUserId!(null);
     setUser!(null);
   };
 
@@ -58,7 +59,13 @@ const LoggedIn = () => {
               <MenuDivider />
             </>
           )}
-          <MenuItem icon={<TbLogout />} onClick={logout}>
+          <MenuItem
+            icon={<TbLogout />}
+            onClick={() => {
+              axios.get("/users/logout");
+              if (setUserId) setUserId(null);
+            }}
+          >
             Logout
           </MenuItem>
         </MenuList>

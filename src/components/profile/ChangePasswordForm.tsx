@@ -28,7 +28,7 @@ const ChangePasswordForm = (props: Props) => {
 
   const changePassword = useMutation(
     (data: ChangePassword) => {
-      return axios().put("/users/changepwd", data);
+      return axios.put("/users/changepwd", data);
     },
     {
       onSuccess: (response) => {

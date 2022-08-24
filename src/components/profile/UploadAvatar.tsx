@@ -29,7 +29,7 @@ const UploadAvatar = ({ isOpen, onClose }: Props) => {
 
   const upload = useMutation(
     (data: FormData) => {
-      return axios().post("/users/upload", data);
+      return axios.post("/users/upload", data);
     },
     {
       onSuccess: (response) => {

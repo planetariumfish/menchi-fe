@@ -30,7 +30,7 @@ const ProfileEdit = () => {
 
   const editProfile = useMutation(
     (data: User) => {
-      return axios().put("/users/edit", data);
+      return axios.put("/users/edit", data);
     },
     {
       onSuccess: (response) => {

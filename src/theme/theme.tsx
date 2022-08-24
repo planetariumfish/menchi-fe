@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import "@fontsource/titan-one";
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -17,7 +18,7 @@ const colors = {
 
 const fonts = {
   body: "system-ui, sans-serif",
-  heading: "Titan One, serif",
+  heading: "'Titan One', serif",
   mono: "Menlo, monospace",
 };
 
