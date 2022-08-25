@@ -1,4 +1,4 @@
-import { Box, Center, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Grid, Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import UsersList from "../components/dashboard/UsersList";
 
@@ -6,7 +6,7 @@ type Props = {};
 
 const Dashboard = (props: Props) => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={3} mx="2rem">
+    <VStack gap={3} mx="2rem">
       <Box
         w="100%"
         borderWidth="1px"
@@ -16,18 +16,10 @@ const Dashboard = (props: Props) => {
         p={2}
       >
         <Center>
-          <Heading
-            size="md"
-            sx={{
-              fontFamily: "var(--title-font)",
-            }}
-            mb={3}
-            color="brand.RocketMetallic"
-          >
+          <Heading size="md" mb={3} color="brand.RocketMetallic">
             Users
           </Heading>
         </Center>
-        <Text mb={1}>Users list:</Text>
         <UsersList />
       </Box>
       <Box
@@ -39,19 +31,12 @@ const Dashboard = (props: Props) => {
         p={2}
       >
         <Center>
-          <Heading
-            size="md"
-            sx={{
-              fontFamily: "var(--title-font)",
-            }}
-            mb={3}
-            color="brand.RocketMetallic"
-          >
+          <Heading size="md" mb={3} color="brand.RocketMetallic">
             Pets
           </Heading>
         </Center>
       </Box>
-    </Grid>
+    </VStack>
   );
 };
 

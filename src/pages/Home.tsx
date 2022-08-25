@@ -12,12 +12,7 @@ const Home = () => {
     <Center>
       <VStack width="80%" gap={3}>
         {user && (
-          <Heading
-            size="xl"
-            sx={{
-              fontFamily: "var(--title-font)",
-            }}
-          >
+          <Heading>
             Welcome,{" "}
             <Text
               color="brand.Bittersweet"
@@ -43,7 +38,6 @@ const Home = () => {
             className="menchi-title"
             size="4xl"
             sx={{
-              fontFamily: "var(--title-font)",
               position: "absolute",
               bottom: "2rem",
               right: "2rem",

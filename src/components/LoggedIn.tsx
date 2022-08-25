@@ -15,14 +15,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "../utils/axiosClient";
 
 const LoggedIn = () => {
-  const { user, setUser, setUserId } = React.useContext(ActiveUser);
+  const { user, setUserId } = React.useContext(ActiveUser);
   const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.clear();
-    setUserId!(null);
-    setUser!(null);
-  };
 
   return (
     user && (

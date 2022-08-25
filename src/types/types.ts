@@ -11,3 +11,5 @@ export type LoginInfo = z.infer<typeof LoginInfo>;
 export type ChangePassword = z.infer<typeof ChangePassword>;
 
 export type Pet = z.infer<typeof Pet>;
+
+export type ModalProps = { onClose: () => void; isOpen: boolean };

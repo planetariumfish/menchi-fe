@@ -30,14 +30,7 @@ const Profile = (props: Props) => {
   return (
     <Center>
       <VStack gap={3} width="80%">
-        <Heading
-          color="brand.Bittersweet"
-          sx={{
-            fontFamily: "var(--title-font)",
-          }}
-        >
-          Profile
-        </Heading>
+        <Heading color="brand.Bittersweet">Profile</Heading>
         {user && (
           <HStack gap={5} width="60vw" align="start">
             <Avatar

@@ -39,6 +39,7 @@ const UserProvider = ({ children }: Props) => {
       onSuccess: (data) => {
         setUser(data);
       },
+      onError: () => setUserId(null),
       enabled: !!userId,
     }
   );

@@ -15,13 +15,9 @@ import FilePicker from "chakra-ui-file-picker";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { ActiveUser } from "../../contexts/contexts";
+import { ModalProps } from "../../types/types";
 
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-const UploadAvatar = ({ isOpen, onClose }: Props) => {
+const UploadAvatar = ({ isOpen, onClose }: ModalProps) => {
   const { user, refetch } = React.useContext(ActiveUser);
   const [file, setFile] = React.useState<File | null>();
   const [invalid, setInvalid] = React.useState(false);

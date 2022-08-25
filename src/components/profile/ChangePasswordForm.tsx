@@ -15,9 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-type Props = {};
-
-const ChangePasswordForm = (props: Props) => {
+const ChangePasswordForm = () => {
   const [passwordChangeInfo, setPasswordChangeInfo] =
     React.useState<ChangePassword>({
       oldpassword: "",

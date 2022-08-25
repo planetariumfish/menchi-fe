@@ -59,14 +59,7 @@ const ProfileEdit = () => {
   return (
     <Center>
       <VStack gap={3} width="100%">
-        <Heading
-          color="brand.Bittersweet"
-          sx={{
-            fontFamily: "var(--title-font)",
-          }}
-        >
-          Profile Settings
-        </Heading>
+        <Heading color="brand.Bittersweet">Profile Settings</Heading>
         {user && (
           <VStack width="60%" gap={5}>
             <FormControl>

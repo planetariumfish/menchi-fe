@@ -15,3 +15,8 @@ export enum Status {
   FOSTERED = "fostered",
   ADOPTED = "adopted",
 }
+
+export enum Role {
+  USER = "USER",
+  ADMIN = "ADMIN",
+}
