@@ -1,5 +1,4 @@
 export enum AnimalType {
-  ALL = "",
   DOG = "Dog",
   CAT = "Cat",
   RAT = "Rat",

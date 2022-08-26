@@ -18,14 +18,14 @@ import {
 } from "@chakra-ui/react";
 import { AnimalType, Status } from "../types/enums";
 import React from "react";
-import AnimalButtons from "../components/search/AnimalButtons";
+import AnimalButtons from "../components/pets/AnimalButtons";
 import axios from "../utils/axiosClient";
 
 // TODO: Make this responsive
 
 const Search = () => {
   const [search, setSearch] = React.useState({
-    animalType: AnimalType.ALL,
+    animalType: "",
     status: Status.ANY,
     height: 0, // change to array for min/max range
     weight: 0, // change to array for min/max range
@@ -65,11 +65,22 @@ const Search = () => {
         >
           Search for a pet
         </Heading>
-        <AnimalButtons
-          onClick={(type) => setSearch({ ...search, animalType: type })}
-          type={search.animalType}
-        />
+        <HStack gap={2}>
+          <Button
+            size="lg"
+            colorScheme={search.animalType === "" ? "yellow" : "gray"}
+            onClick={() => setSearch({ ...search, animalType: "" })}
+          >
+            ALL
+          </Button>
 
+          <AnimalButtons
+            onClick={(selected) =>
+              setSearch({ ...search, animalType: selected })
+            }
+            selected={search.animalType}
+          />
+        </HStack>
         <FormControl as="fieldset">
           <FormLabel as="legend">Adoption status:</FormLabel>
           <RadioGroup
@@ -153,10 +164,3 @@ const Search = () => {
 };
 
 export default Search;
-
-// Search by:
-// Adoption Status - radio button
-// Type - icon button? select?
-// Height - input // radio button for inches/cm
-// Weight - input // radio button for lbs/kg
-// Name - text input

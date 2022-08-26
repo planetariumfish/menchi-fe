@@ -24,7 +24,7 @@ const ConfirmAdmin = ({ isOpen, onClose, userId, refetch }: ConfirmProps) => {
   const toast = useToast();
 
   const updateUser = useMutation(
-    (data: any /* for now*/) => {
+    (data: Object) => {
       return axios.put(`/users/${userId}`, data);
     },
     {

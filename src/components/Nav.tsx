@@ -2,8 +2,8 @@ import { Flex, Heading, Spacer } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ActiveUser } from "../contexts/contexts";
-import LoggedIn from "./LoggedIn";
-import LoggedOut from "./LoggedOut";
+import LoggedIn from "./login/LoggedIn";
+import LoggedOut from "./login/LoggedOut";
 
 const Nav = () => {
   const { user } = React.useContext(ActiveUser);

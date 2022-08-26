@@ -34,7 +34,6 @@ const ProfileEdit = () => {
     },
     {
       onSuccess: (response) => {
-        console.log(response.data);
         toast({
           description: response.data.message,
           status: "success",

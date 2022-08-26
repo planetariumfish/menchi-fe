@@ -9,12 +9,12 @@ import {
   Spacer,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import axios from "../utils/axiosClient";
+import axios from "../../utils/axiosClient";
 import React, { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { ActiveUser } from "../contexts/contexts";
-import { NewUser as NewUserSchema } from "../schemas/user.zod";
-import { NewUser } from "../types/types";
+import { ActiveUser } from "../../contexts/contexts";
+import { NewUser as NewUserSchema } from "../../schemas/user.zod";
+import { NewUser } from "../../types/types";
 import FormToggle from "./FormToggle";
 
 type Props = {
@@ -70,16 +70,16 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
     }
   };
 
-  // TODO: move this into handleSignup (!result.success) clause
+  // TODO: make this nicer
   const checkInput = () => {
     if (!signupInfo.email) setInvalid({ ...invalid, email: true });
     if (!signupInfo.firstname) setInvalid({ ...invalid, firstname: true });
     if (!signupInfo.password) setInvalid({ ...invalid, password: true });
     if (!signupInfo.repassword) setInvalid({ ...invalid, repassword: true });
     if (
-      invalid.email &&
-      invalid.firstname &&
-      invalid.password &&
+      invalid.email ||
+      invalid.firstname ||
+      invalid.password ||
       invalid.repassword
     )
       return false;

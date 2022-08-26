@@ -6,7 +6,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import React from "react";
-import { ModalProps } from "../types/types";
+import { ModalProps } from "../../types/types";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 

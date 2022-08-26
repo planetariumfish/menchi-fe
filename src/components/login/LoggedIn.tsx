@@ -10,9 +10,9 @@ import {
 import { TbLogout } from "react-icons/tb";
 import { FaBookmark, FaUser, FaSearch, FaDragon } from "react-icons/fa";
 import { BsHeartFill } from "react-icons/bs";
-import { ActiveUser } from "../contexts/contexts";
+import { ActiveUser } from "../../contexts/contexts";
 import { useNavigate } from "react-router-dom";
-import axios from "../utils/axiosClient";
+import axios from "../../utils/axiosClient";
 
 const LoggedIn = () => {
   const { user, setUserId } = React.useContext(ActiveUser);

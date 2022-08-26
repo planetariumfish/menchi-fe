@@ -9,11 +9,11 @@ import {
   VStack,
   Spacer,
 } from "@chakra-ui/react";
-import { LoginInfo as LoginInfoSchema } from "../schemas/user.zod";
-import { LoginInfo } from "../types/types";
-import axios from "../utils/axiosClient";
+import { LoginInfo as LoginInfoSchema } from "../../schemas/user.zod";
+import { LoginInfo } from "../../types/types";
+import axios from "../../utils/axiosClient";
 import FormToggle from "./FormToggle";
-import { ActiveUser } from "../contexts/contexts";
+import { ActiveUser } from "../../contexts/contexts";
 import { useMutation } from "@tanstack/react-query";
 
 type Props = {
