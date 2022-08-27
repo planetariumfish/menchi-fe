@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import AddPet from "../components/dashboard/AddPet";
+import PetsList from "../components/dashboard/PetsList";
 import UsersList from "../components/dashboard/UsersList";
 
 type Props = {};
@@ -46,14 +47,17 @@ const Dashboard = (props: Props) => {
             Pets
           </Heading>
           <Button
+            size="sm"
             colorScheme="teal"
             position="absolute"
+            top={0}
             right={0}
             onClick={() => setAddPet(true)}
           >
             Add pet
           </Button>
         </Center>
+        <PetsList />
       </Box>
       <AddPet isOpen={addPet} onClose={() => setAddPet(false)} />
     </VStack>
