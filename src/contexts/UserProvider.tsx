@@ -11,6 +11,8 @@ type Props = {
 const UserProvider = ({ children }: Props) => {
   const [user, setUser] = React.useState<User | null>(null);
   const [userId, setUserId] = React.useState<string | null>(null);
+  const [userBookmarks, setUserBookmarks] = React.useState<string[]>([]);
+  const [userPets, setUserPets] = React.useState<string[]>([]);
   const queryClient = useQueryClient();
 
   React.useEffect(() => {
@@ -44,9 +46,33 @@ const UserProvider = ({ children }: Props) => {
     }
   );
 
+  const bookmarks = useQuery(
+    ["userSavedPets"],
+    async () => {
+      if (user) {
+        const result = await axios.get(`/pets/user/${user.id}/saved`);
+        return result.data;
+      }
+    },
+    {
+      onSuccess: (data) => {
+        setUserBookmarks(data);
+      },
+      enabled: !!user,
+    }
+  );
+
   return (
     <ActiveUser.Provider
-      value={{ user, setUser, setUserId, isLoading, refetch }}
+      value={{
+        user,
+        setUser,
+        setUserId,
+        isLoading,
+        refetch,
+        userBookmarks,
+        userPets,
+      }}
     >
       {children}
     </ActiveUser.Provider>

@@ -1,4 +1,4 @@
-import { Code, HStack } from "@chakra-ui/react";
+import { Code, HStack, Wrap, WrapItem } from "@chakra-ui/react";
 import { GrFormClose } from "react-icons/gr";
 import React from "react";
 
@@ -8,30 +8,33 @@ type Props = {
 };
 
 const TagList = ({ tags, onRemove }: Props) => {
-  // working on deleting tags
   return (
-    <HStack mt={2}>
+    <Wrap mt={2}>
       {tags.map(
         (tag, i) =>
           tag && (
-            <Code
-              key={tag}
-              colorScheme="gray"
-              sx={{
-                display: "flex",
-                flexFlow: "row nowrap",
-                alignItems: "center",
-                gap: "2px",
-                fontSize: "0.7rem",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {tag}
-              <GrFormClose onClick={() => onRemove(i)} className="clickable" />
-            </Code>
+            <WrapItem key={tag}>
+              <Code
+                colorScheme="gray"
+                sx={{
+                  display: "flex",
+                  flexFlow: "row nowrap",
+                  alignItems: "center",
+                  gap: "2px",
+                  fontSize: "0.7rem",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {tag}
+                <GrFormClose
+                  onClick={() => onRemove(i)}
+                  className="clickable"
+                />
+              </Code>
+            </WrapItem>
           )
       )}
-    </HStack>
+    </Wrap>
   );
 };
 

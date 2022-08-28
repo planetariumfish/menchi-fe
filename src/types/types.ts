@@ -15,3 +15,8 @@ export type Pet = z.infer<typeof Pet>;
 export type NewPet = z.infer<typeof NewPet>;
 
 export type ModalProps = { onClose: () => void; isOpen: boolean };
+
+export type Bookmark = {
+  userId: string;
+  petId: string;
+};

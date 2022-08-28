@@ -9,7 +9,6 @@ export enum AnimalType {
 }
 
 export enum Status {
-  ANY = "any",
   AVAILABLE = "available",
   FOSTERED = "fostered",
   ADOPTED = "adopted",

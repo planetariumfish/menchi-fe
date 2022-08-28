@@ -20,16 +20,28 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const PetsList = (props: Props) => {
   const [allPets, setAllPets] = React.useState<Pet[]>([]);
+  const navigate = useNavigate();
   const columnHelper = React.useMemo(() => createColumnHelper<Pet>(), []);
   const columns: ColumnDef<Pet, any>[] = React.useMemo(
     () => [
       columnHelper.accessor("name", {
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          return (
+            <Text
+              onClick={() => navigate(`/pet/${info.row.original.id}`)}
+              className="clickable"
+              _hover={{ color: "brand.OrangeYellow" }}
+            >
+              {info.getValue()}
+            </Text>
+          );
+        },
         header: () => <span>Name</span>,
       }),
       columnHelper.accessor("type", {

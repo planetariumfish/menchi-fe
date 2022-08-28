@@ -56,7 +56,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
     <>
       <ModalBody>
         <VStack gap={2}>
-          <FormControl>
+          <FormControl isInvalid={login.isError}>
             <FormLabel htmlFor="email">Email:</FormLabel>
             <Input
               type="email"
@@ -67,7 +67,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
               }}
             />
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={login.isError}>
             <FormLabel htmlFor="password">Password:</FormLabel>
             <Input
               type="password"

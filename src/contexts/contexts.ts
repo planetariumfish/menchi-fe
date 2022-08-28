@@ -8,10 +8,14 @@ export const ActiveUser = createContext<{
   setUserId: React.Dispatch<React.SetStateAction<string | null>> | null;
   isLoading: Boolean;
   refetch: (() => Promise<QueryObserverResult>) | null;
+  userBookmarks: string[];
+  userPets: string[];
 }>({
   user: null,
   setUser: null,
   setUserId: null,
   isLoading: false,
   refetch: null,
+  userBookmarks: [],
+  userPets: [],
 });
