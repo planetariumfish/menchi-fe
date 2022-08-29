@@ -7,9 +7,9 @@ Front-end part of the Full-Stack project for [ITC](https://github.com/israeltech
 
 Set up using:
 
-- Typescript: v4.7.4
-- React: v18.2.0
-- Axios: v0.27.2
+- [Typescript](https://www.typescriptlang.org): v4.7.4
+- [React](https://reactjs.org): v18.2.0
+- [Axios](https://axios-http.com): v0.27.2
 - [Chakra-UI](http://chakra-ui.com): v2.2.6
 - [Zod](https://github.com/colinhacks/zod): v3.18.0
 - [Tanstack React-Query](https://tanstack.com/query/v4): v4.2.1
@@ -30,13 +30,15 @@ Done:
 - Search page advanced search form
 - User profile page (+ edit functionality, now with extra toast)
 - Users can now upload profile photo
+- Adopt/Foster/Return pet function
 
 To do:
 
 - Toggle basic and advanced search
 - Change height/weight search input to ranges
-- Pet list and pet card components
-- Admin dashboard
+- Admin dashboard users functionality
+- Confirmation dialogues for adopt/foster
+- Refetching info for pet status on adopt/foster/return
 
 ## Known Issues
 

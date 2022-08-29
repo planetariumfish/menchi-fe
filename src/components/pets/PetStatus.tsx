@@ -4,16 +4,19 @@ import React from "react";
 import { ActiveUser } from "../../contexts/contexts";
 import { Status } from "../../types/enums";
 import axios from "../../utils/axiosClient";
+import ConfirmReturn from "./ConfirmReturn";
 
 type Props = {
   id: string | undefined;
   status: Status | string;
+  owner: string | undefined;
   notAUser: (toggle: boolean) => void;
 };
 
 // TODO: Return a pet functionality
-const PetStatus = ({ id, status, notAUser }: Props) => {
+const PetStatus = ({ id, status, notAUser, owner }: Props) => {
   const { user } = React.useContext(ActiveUser);
+  const [returning, setReturning] = React.useState(false);
   const toast = useToast();
   const { mutate } = useMutation(
     (data: { status: Status }) => {
@@ -31,20 +34,32 @@ const PetStatus = ({ id, status, notAUser }: Props) => {
     }
   );
   return user ? (
-    <ButtonGroup>
-      <Button
-        isDisabled={status !== "AVAILABLE"}
-        onClick={() => mutate({ status: Status.FOSTERED })}
-      >
-        Foster
-      </Button>
-      <Button
-        isDisabled={status === "ADOPTED"}
-        onClick={() => mutate({ status: Status.ADOPTED })}
-      >
-        Adopt
-      </Button>
-    </ButtonGroup>
+    <>
+      <ButtonGroup>
+        <Button
+          isDisabled={status !== "AVAILABLE"}
+          onClick={() => mutate({ status: Status.FOSTERED })}
+        >
+          Foster
+        </Button>
+        <Button
+          isDisabled={status === "ADOPTED" || !!user.returned}
+          onClick={() => mutate({ status: Status.ADOPTED })}
+        >
+          Adopt
+        </Button>
+        {user.id === owner && (
+          <Button onClick={() => setReturning(true)}>Return pet</Button>
+        )}
+      </ButtonGroup>
+      {returning && (
+        <ConfirmReturn
+          petId={id}
+          onClose={() => setReturning(false)}
+          isOpen={returning}
+        />
+      )}
+    </>
   ) : (
     <HStack>
       <Text

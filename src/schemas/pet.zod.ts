@@ -26,6 +26,7 @@ export const Pet = z.object({
   hypoallergenic: z.boolean(),
   dietary: z.array(z.string().optional()),
   added: z.date(),
+  userId: z.string().optional(),
   returned: z.date().optional(),
   tags: z.array(z.string().optional()),
 });

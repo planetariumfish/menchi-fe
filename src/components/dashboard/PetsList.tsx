@@ -57,7 +57,22 @@ const PetsList = (props: Props) => {
         header: () => <span>Color</span>,
       }),
       columnHelper.accessor("status", {
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          const value = info.getValue();
+          return (
+            <Text
+              color={
+                value === "AVAILABLE"
+                  ? "brand.Keppel"
+                  : value === "FOSTERED"
+                  ? "brand.OrangeYellow"
+                  : "brand.Bittersweet"
+              }
+            >
+              {value}
+            </Text>
+          );
+        },
         header: () => <span>Status</span>,
       }),
       columnHelper.accessor("height", {

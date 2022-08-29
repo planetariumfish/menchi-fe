@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Bookmark, Pet } from "../types/types";
 import axios from "../utils/axiosClient";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -157,6 +157,7 @@ const PetPage = () => {
                 <PetStatus
                   id={id}
                   status={pet.status}
+                  owner={pet.userId}
                   notAUser={setNotAUserAlert}
                 />
               </VStack>
