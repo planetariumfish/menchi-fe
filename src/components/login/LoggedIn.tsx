@@ -35,8 +35,15 @@ const LoggedIn = () => {
             Profile
           </MenuItem>
           <MenuDivider />
-          <MenuItem icon={<BsHeartFill />}>Your Pets</MenuItem>
-          <MenuItem icon={<FaBookmark />}>Saved Pets</MenuItem>
+          <MenuItem icon={<BsHeartFill />} onClick={() => navigate("/owned")}>
+            My Pets
+          </MenuItem>
+          <MenuItem
+            icon={<FaBookmark />}
+            onClick={() => navigate("/favorites")}
+          >
+            Favorite Pets
+          </MenuItem>
           <MenuDivider />
           <MenuItem icon={<FaSearch />} onClick={() => navigate("/search")}>
             Search for a pet
@@ -58,6 +65,7 @@ const LoggedIn = () => {
             onClick={() => {
               axios.get("/users/logout");
               if (setUserId) setUserId(null);
+              navigate("/");
             }}
           >
             Logout

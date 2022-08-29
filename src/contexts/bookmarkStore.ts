@@ -7,6 +7,7 @@ interface BookmarkState {
   load: (id: string) => void;
   add: (bookmark: string) => void;
   remove: (bookmark: string) => void;
+  reset: () => void;
 }
 
 const useBookmarkStore = create<BookmarkState>()(
@@ -24,6 +25,7 @@ const useBookmarkStore = create<BookmarkState>()(
           set((state) => ({
             bookmarks: state.bookmarks.filter((e) => e !== bookmark),
           })),
+        reset: () => set({ bookmarks: [] }),
       }),
       {
         name: "bookmark-storage",

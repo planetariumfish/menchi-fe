@@ -30,14 +30,7 @@ const Search = () => {
   return (
     <Center>
       <VStack gap={5} width="80%">
-        <Heading
-          color="brand.Bittersweet"
-          sx={{
-            fontFamily: "var(--title-font)",
-          }}
-        >
-          Search for a pet
-        </Heading>
+        <Heading color="brand.Bittersweet">Search for a pet</Heading>
         <SearchForm onSearch={(data) => setPets(data)} />
         <Center>{pets && <PetList pets={pets} />}</Center>
       </VStack>

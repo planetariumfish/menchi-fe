@@ -12,13 +12,25 @@ import Profile from "./pages/Profile";
 import ProfileEdit from "./pages/ProfileEdit";
 import Search from "./pages/Search";
 import useBookmarkStore from "./contexts/bookmarkStore";
+import Favorites from "./pages/Favorites";
+import OwnedPets from "./pages/OwnedPets";
+import usePetStore from "./contexts/petStore";
 
 function App() {
   const { user } = React.useContext(ActiveUser);
   const loadBookmarks = useBookmarkStore((state) => state.load);
+  const resetBookmarks = useBookmarkStore((state) => state.reset);
+  const loadPets = usePetStore((state) => state.load);
+  const resetPets = usePetStore((state) => state.reset);
 
   React.useEffect(() => {
-    if (user) loadBookmarks(user.id);
+    if (user) {
+      loadBookmarks(user.id);
+      loadPets(user.id);
+    } else {
+      resetBookmarks();
+      resetPets();
+    }
   }, [user]);
 
   return (
@@ -32,6 +44,8 @@ function App() {
         <Route element={<LoggedInRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/owned" element={<OwnedPets />} />
         </Route>
         <Route element={<AdminRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
