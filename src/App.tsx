@@ -1,16 +1,26 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import AdminRoute from "./components/routes/AdminRoute";
 import LoggedInRoute from "./components/routes/LoggedInRoute";
+import { ActiveUser } from "./contexts/contexts";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import PetPage from "./pages/PetPage";
 import Profile from "./pages/Profile";
 import ProfileEdit from "./pages/ProfileEdit";
 import Search from "./pages/Search";
+import useBookmarkStore from "./contexts/bookmarkStore";
 
 function App() {
+  const { user } = React.useContext(ActiveUser);
+  const loadBookmarks = useBookmarkStore((state) => state.load);
+
+  React.useEffect(() => {
+    if (user) loadBookmarks(user.id);
+  }, [user]);
+
   return (
     <Box width="100vw">
       <Nav />

@@ -15,6 +15,7 @@ Set up using:
 - [Tanstack React-Query](https://tanstack.com/query/v4): v4.2.1
 - [Tanstack React Table](https://tanstack.com/table/v8): v8.5.11
 - [Vite](https://vitejs.dev): v3.0.0
+- [Zustand](https://zustand-demo.pmnd.rs): v4.1.1
 
 ## Status
 

@@ -24,13 +24,16 @@ import PetPageTags from "../components/pets/PetPageTags";
 import PetLikes from "../components/pets/PetLikes";
 import capitalizeWords from "../utils/capitalizeWords";
 import PetStatus from "../components/pets/PetStatus";
+import useBookmarkStore from "../contexts/bookmarkStore";
 
 const PetPage = () => {
-  const { user, userBookmarks } = React.useContext(ActiveUser);
+  const { user } = React.useContext(ActiveUser);
   const [pet, setPet] = React.useState<Pet>();
   const { id } = useParams();
+  const bookmarks = useBookmarkStore((state) => state.bookmarks);
+  const loadBookmarks = useBookmarkStore((state) => state.load);
   const [isBookmarked, setIsBookmarked] = React.useState<boolean>(
-    id && userBookmarks ? userBookmarks.includes(id) : false
+    id && bookmarks ? bookmarks.includes(id) : false
   );
   const [notAUserAlert, setNotAUserAlert] = React.useState<boolean>(false);
   const toast = useToast();
@@ -56,6 +59,7 @@ const PetPage = () => {
     {
       onSuccess: (response) => {
         setIsBookmarked(!isBookmarked);
+        loadBookmarks(user!.id);
         toast({
           description: response.data.message,
           status: "success",
