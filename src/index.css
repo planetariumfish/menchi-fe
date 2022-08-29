@@ -51,7 +51,7 @@ a:hover {
 
 #formtoggle-text:hover {
   cursor: pointer;
-  color: (--chakra-colors-brand-Bittersweet);
+  color: var(--chakra-colors-brand-Bittersweet);
 }
 
 .clickable:hover {

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { NewPet, Pet } from "../schemas/pet.zod";
+import { Search } from "../schemas/search.zos";
 import { User, NewUser, LoginInfo, ChangePassword } from "../schemas/user.zod";
 
 export type User = z.infer<typeof User>;
@@ -20,3 +21,5 @@ export type Bookmark = {
   userId: string;
   petId: string;
 };
+
+export type Search = z.infer<typeof Search>;

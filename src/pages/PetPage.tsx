@@ -101,8 +101,7 @@ const PetPage = () => {
                   maxHeight="60vh"
                 />
               </Center>
-            </Box>
-            <Box>
+
               <VStack width="100%">
                 <Divider mt="2rem" />
                 <Text fontSize="2xl">
@@ -110,6 +109,8 @@ const PetPage = () => {
                 </Text>
                 <Divider />
               </VStack>
+            </Box>
+            <Box>
               <VStack width="100%" align="start" mt="1rem">
                 <HStack width="100%" gap={3}>
                   <Text>Dietary Preferences:</Text>
@@ -145,11 +146,15 @@ const PetPage = () => {
                 <Divider />
                 <PetLikes name={pet.name} id={id} />
                 <Divider />
-                <Text fontSize="xl">Status:</Text>
+
                 <Heading color="brand.Keppel">
                   {pet.status && capitalizeWords(pet.status)}
                 </Heading>
-                <PetStatus id={id} status={pet.status} />
+                <PetStatus
+                  id={id}
+                  status={pet.status}
+                  notAUser={setNotAUserAlert}
+                />
               </VStack>
             </Box>
           </SimpleGrid>

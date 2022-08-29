@@ -1,4 +1,4 @@
-import { Wrap, WrapItem } from "@chakra-ui/react";
+import { Center, Wrap, WrapItem } from "@chakra-ui/react";
 import { Pet } from "../../types/types";
 import PetCard from "./PetCard";
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const AnimalType = [
+export const AnimalType = [
   "Dog",
   "Cat",
   "Rat",
@@ -10,12 +10,14 @@ const AnimalType = [
   "Other",
 ] as const;
 
+export const Status = ["AVAILABLE", "ADOPTED", "FOSTERED"] as const;
+
 export const Pet = z.object({
   id: z.string().uuid(),
   name: z.string(),
   type: z.enum(AnimalType),
   breed: z.string(),
-  status: z.enum(["AVAILABLE", "ADOPTED", "FOSTERED"]),
+  status: z.enum(Status),
   picture: z.string().optional(),
   height: z.number(),
   weight: z.number(),

@@ -12,7 +12,7 @@ const PetLikes = ({ name, id }: Props) => {
   const [likes, setLikes] = React.useState<number>(0);
 
   const getLikes = useQuery(
-    [id],
+    [`${id}-likes`],
     async () => {
       const result = await axios.get(`/pets/${id}/likes`);
       return result.data;
@@ -25,7 +25,7 @@ const PetLikes = ({ name, id }: Props) => {
   );
   return (
     <Text>
-      {name} has been favorited by {likes || 0} users.
+      {name} has been favorited by {likes} users.
     </Text>
   );
 };
