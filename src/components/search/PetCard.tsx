@@ -1,5 +1,6 @@
 import {
   AspectRatio,
+  Badge,
   Box,
   Button,
   Center,
@@ -87,6 +88,17 @@ const PetCard = ({ pet }: Props) => {
             <Text>
               {pet.type} ⦁ {pet.breed} ⦁ {pet.color}
             </Text>
+            <Badge
+              colorScheme={
+                pet.status === "AVAILABLE"
+                  ? "green"
+                  : pet.status === "FOSTERED"
+                  ? "yellow"
+                  : "red"
+              }
+            >
+              {pet.status}
+            </Badge>
           </VStack>
         </Center>
       </Box>
