@@ -120,7 +120,6 @@ const SearchForm = ({ onSearch }: Props) => {
                   min={0}
                   max={110}
                   onChange={(height: [number, number]) => {
-                    console.log(searchInfo.height);
                     setSearchInfo({ ...searchInfo, height });
                   }}
                 >
@@ -199,6 +198,9 @@ const SearchForm = ({ onSearch }: Props) => {
                   onChange={(e) =>
                     setSearchInfo({ ...searchInfo, query: e.target.value })
                   }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") mutate(searchInfo);
+                  }}
                 />
               </HStack>
             </FormControl>

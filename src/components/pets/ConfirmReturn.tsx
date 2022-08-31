@@ -17,9 +17,10 @@ import { ModalProps } from "../../types/types";
 
 type ConfirmProps = ModalProps & {
   petId: string | undefined;
+  refetch: () => void;
 };
 
-const ConfirmReturn = ({ onClose, isOpen, petId }: ConfirmProps) => {
+const ConfirmReturn = ({ onClose, isOpen, petId, refetch }: ConfirmProps) => {
   const toast = useToast();
 
   const returnPet = useMutation(
@@ -35,6 +36,7 @@ const ConfirmReturn = ({ onClose, isOpen, petId }: ConfirmProps) => {
           isClosable: true,
         });
         onClose();
+        refetch();
       },
     }
   );

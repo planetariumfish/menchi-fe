@@ -43,3 +43,19 @@ export const NewPet = z.object({
   dietary: z.array(z.string().optional()),
   tags: z.array(z.string().optional()),
 });
+
+export const UpdatedPet = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  type: z.enum(AnimalType),
+  breed: z.string(),
+  status: z.enum(Status),
+  picture: z.string().optional(),
+  height: z.number(),
+  weight: z.number(),
+  color: z.string(),
+  bio: z.string().optional(),
+  hypoallergenic: z.boolean(),
+  dietary: z.array(z.string().optional()),
+  tags: z.array(z.string().optional()),
+});

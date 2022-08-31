@@ -53,7 +53,9 @@ const ConfirmGetPet = ({
           <Button
             colorScheme="yellow"
             ms={3}
-            onClick={() => status && onMutate({ status })}
+            onClick={() => {
+              status && onMutate({ status });
+            }}
           >
             Confirm
           </Button>

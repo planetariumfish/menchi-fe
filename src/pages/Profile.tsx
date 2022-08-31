@@ -39,7 +39,6 @@ const Profile = (props: Props) => {
               src={user.photo || ""}
               onClick={() => {
                 handleAvatarEdit();
-                console.log(user.photo);
               }}
               className="clickable"
             />

@@ -14,9 +14,17 @@ type Props = {
   owner: string | undefined;
   petname: string | undefined;
   notAUser: (toggle: boolean) => void;
+  refetch: () => void;
 };
 
-const PetStatus = ({ id, status, notAUser, owner, petname }: Props) => {
+const PetStatus = ({
+  id,
+  status,
+  notAUser,
+  owner,
+  petname,
+  refetch,
+}: Props) => {
   const { user } = React.useContext(ActiveUser);
   const [returning, setReturning] = React.useState(false);
   const [gettingPet, setGettingPet] = React.useState(false);
@@ -35,6 +43,7 @@ const PetStatus = ({ id, status, notAUser, owner, petname }: Props) => {
           isClosable: true,
         });
         setGettingPet(false);
+        refetch();
       },
     }
   );
@@ -68,6 +77,7 @@ const PetStatus = ({ id, status, notAUser, owner, petname }: Props) => {
           petId={id}
           onClose={() => setReturning(false)}
           isOpen={returning}
+          refetch={refetch}
         />
       )}
       {gettingPet && (

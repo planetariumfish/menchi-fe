@@ -16,6 +16,7 @@ import {
   useToast,
   SimpleGrid,
   Spinner,
+  Button,
 } from "@chakra-ui/react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { ActiveUser } from "../contexts/contexts";
@@ -25,6 +26,7 @@ import PetLikes from "../components/pets/PetLikes";
 import capitalizeWords from "../utils/capitalizeWords";
 import PetStatus from "../components/pets/PetStatus";
 import useBookmarkStore from "../contexts/bookmarkStore";
+import EditPet from "../components/dashboard/EditPet";
 
 const PetPage = () => {
   const { user } = React.useContext(ActiveUser);
@@ -36,9 +38,10 @@ const PetPage = () => {
     id && bookmarks ? bookmarks.includes(id) : false
   );
   const [notAUserAlert, setNotAUserAlert] = React.useState<boolean>(false);
+  const [editPet, setEditPet] = React.useState<boolean>(false);
   const toast = useToast();
 
-  const getPet = useQuery(
+  const { refetch } = useQuery(
     [id],
     async () => {
       const result = await axios.get(`/pets/${id}`);
@@ -95,6 +98,11 @@ const PetPage = () => {
               <BsHeart size="45px" />
             )}
           </Box>
+          {user && user.role === "ADMIN" && (
+            <Box position="absolute" left={0} right={0}>
+              <Button onClick={() => setEditPet(true)}>Edit Pet</Button>
+            </Box>
+          )}
           <SimpleGrid columns={[1, null, 2]} spacing="3rem">
             <Box>
               <Center>
@@ -160,6 +168,7 @@ const PetPage = () => {
                   owner={pet.userId}
                   notAUser={setNotAUserAlert}
                   petname={pet.name}
+                  refetch={refetch}
                 />
               </VStack>
             </Box>
@@ -170,6 +179,14 @@ const PetPage = () => {
         isOpen={notAUserAlert}
         onClose={() => setNotAUserAlert(false)}
       />
+      {editPet && (
+        <EditPet
+          isOpen={editPet}
+          onClose={() => setEditPet(false)}
+          pet={pet}
+          refetch={refetch}
+        />
+      )}
     </Center>
   );
 };
