@@ -6,6 +6,6 @@ export const Search = z.object({
   status: z.enum(Status).or(z.string()).optional(),
   height: z.tuple([z.number(), z.number()]),
   weight: z.tuple([z.number(), z.number()]),
-  name: z.string().optional(),
+  query: z.string().optional(),
   advanced: z.boolean(),
 });

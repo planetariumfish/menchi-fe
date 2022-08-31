@@ -8,16 +8,20 @@ import {
   RadioGroup,
   Radio,
   Input,
-  Spacer,
   Text,
   Box,
+  RangeSlider,
+  RangeSliderTrack,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { Pet, Search as SearchType } from "../../types/types";
 import axios from "../../utils/axiosClient";
 import AnimalButtons from "../pets/AnimalButtons";
-import { AnimalType, Status } from "../../types/enums";
+import { Status } from "../../types/enums";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type Props = {
@@ -30,26 +34,10 @@ const SearchForm = ({ onSearch }: Props) => {
     status: "",
     height: [0, 0],
     weight: [0, 0],
-    name: "",
+    query: "",
     advanced: false,
   });
-  const [metric, setMetric] = React.useState(true);
-  const [parent] = useAutoAnimate<HTMLDivElement>(/* optional config */);
-
-  // Checking the search object. DON'T FORGET TO REMOVE
-  React.useEffect(() => {
-    console.log(searchInfo);
-  }, [searchInfo]);
-
-  // const handleHeightChange = (height: number) => {
-  //   if (!metric) height = height / 2.54;
-  //   setSearch({ ...search, height });
-  // };
-
-  // const handleWeightChange = (weight: number) => {
-  //   if (!metric) weight = weight * 2.205;
-  //   setSearch({ ...search, weight });
-  // };
+  const [parent] = useAutoAnimate<HTMLDivElement>();
 
   const { mutate, isLoading } = useMutation(
     (data: SearchType) => {
@@ -93,7 +81,7 @@ const SearchForm = ({ onSearch }: Props) => {
           />
         </FormControl>
       </HStack>
-      <Box ref={parent}>
+      <Box ref={parent} width="100%">
         {searchInfo.advanced && (
           <VStack>
             <FormControl as="fieldset" mt={2}>
@@ -125,51 +113,91 @@ const SearchForm = ({ onSearch }: Props) => {
                 <FormLabel htmlFor="height" mb={0}>
                   Height
                 </FormLabel>
-                <Input
-                  type="number"
-                  width="5ch"
-                  id="height"
-                  name="height"
-                  placeholder="0"
-                  // onChange={(e) => handleHeightChange(+e.target.value)}
-                />
-                <Text mb="0" width="10ch">
-                  {metric ? "cm" : "inches"}
+                <RangeSlider
+                  aria-label={["min", "max"]}
+                  colorScheme="pink"
+                  defaultValue={[0, 10]}
+                  min={0}
+                  max={110}
+                  onChange={(height: [number, number]) => {
+                    console.log(searchInfo.height);
+                    setSearchInfo({ ...searchInfo, height });
+                  }}
+                >
+                  <RangeSliderTrack>
+                    <RangeSliderFilledTrack />
+                  </RangeSliderTrack>
+                  <Tooltip
+                    hasArrow
+                    label={`${searchInfo.height[0]}`}
+                    bg="brand.Keppel"
+                    color="brand.Cultured"
+                  >
+                    <RangeSliderThumb index={0} />
+                  </Tooltip>
+                  <Tooltip
+                    hasArrow
+                    label={`${searchInfo.height[1]}`}
+                    bg="brand.Keppel"
+                    color="brand.Cultured"
+                  >
+                    <RangeSliderThumb index={1} />
+                  </Tooltip>
+                </RangeSlider>
+                <Text mb="0" width="12ch">
+                  {searchInfo.height[0]} - {searchInfo.height[1]} cm
                 </Text>
-                <Spacer />
+              </HStack>
+            </FormControl>
+            <FormControl>
+              <HStack>
                 <FormLabel htmlFor="weight" mb={0}>
                   Weight
                 </FormLabel>
-                <Input
-                  type="number"
-                  width="5ch"
-                  id="weight"
-                  name="weight"
-                  placeholder="0"
-                  // onChange={(e) => handleWeightChange(+e.target.value)}
-                />
-                <Text mb="0" width="10ch">
-                  {metric ? "kg" : "lbs"}
+                <RangeSlider
+                  aria-label={["min", "max"]}
+                  colorScheme="pink"
+                  defaultValue={[0, 10]}
+                  min={0}
+                  max={60}
+                  onChange={(weight: [number, number]) => {
+                    console.log(searchInfo.weight);
+                    setSearchInfo({ ...searchInfo, weight });
+                  }}
+                >
+                  <RangeSliderTrack>
+                    <RangeSliderFilledTrack />
+                  </RangeSliderTrack>
+                  <Tooltip
+                    hasArrow
+                    label={`${searchInfo.weight[0]}`}
+                    bg="brand.Keppel"
+                    color="brand.Cultured"
+                  >
+                    <RangeSliderThumb index={0} />
+                  </Tooltip>
+                  <Tooltip
+                    hasArrow
+                    label={`${searchInfo.weight[1]}`}
+                    bg="brand.Keppel"
+                    color="brand.Cultured"
+                  >
+                    <RangeSliderThumb index={1} />
+                  </Tooltip>
+                </RangeSlider>
+                <Text mb="0" width="12ch">
+                  {searchInfo.weight[0]} - {searchInfo.weight[1]} kg
                 </Text>
-                <FormLabel htmlFor="units" mb={0} width="11ch">
-                  units: {metric ? "metric" : "imperial"}{" "}
-                </FormLabel>
-                <Switch
-                  id="units"
-                  colorScheme="yellow"
-                  isChecked={metric}
-                  onChange={() => setMetric(!metric)}
-                />
               </HStack>
             </FormControl>
             <FormControl mb={2}>
               <HStack>
-                <FormLabel>Name:</FormLabel>
+                <FormLabel>Query:</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Search by name"
+                  placeholder="Enter search terms separated by commas."
                   onChange={(e) =>
-                    setSearchInfo({ ...searchInfo, name: e.target.value })
+                    setSearchInfo({ ...searchInfo, query: e.target.value })
                   }
                 />
               </HStack>

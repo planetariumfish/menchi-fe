@@ -159,6 +159,7 @@ const PetPage = () => {
                   status={pet.status}
                   owner={pet.userId}
                   notAUser={setNotAUserAlert}
+                  petname={pet.name}
                 />
               </VStack>
             </Box>

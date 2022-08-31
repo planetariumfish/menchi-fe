@@ -22,6 +22,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import ConfirmAdmin from "./ConfirmAdmin";
+import UserDetails from "./UserDetails";
 
 //TODO: Filterable / sortable / searchable table
 
@@ -30,6 +31,7 @@ const UsersList = () => {
   const columnHelper = React.useMemo(() => createColumnHelper<User>(), []);
   const [confirmAdmin, setConfirmAdmin] = React.useState<boolean>(false);
   const [userToMod, setUserToMod] = React.useState<string>();
+  const [showUserDetails, setShowUserDetails] = React.useState(false);
 
   const columns: ColumnDef<User, any>[] = React.useMemo(
     () => [
@@ -42,7 +44,21 @@ const UsersList = () => {
         header: () => <span>Last Name</span>,
       }),
       columnHelper.accessor("email", {
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          const value: string = info.getValue();
+          return (
+            <Text
+              _hover={{ color: "brand.OrangeYellow" }}
+              className="clickable"
+              onClick={() => {
+                setShowUserDetails(true);
+                setUserToMod(info.row.original.id);
+              }}
+            >
+              {value}
+            </Text>
+          );
+        },
         header: () => <span>Email</span>,
       }),
       columnHelper.accessor("phone", {
@@ -141,6 +157,13 @@ const UsersList = () => {
           onClose={() => setConfirmAdmin(false)}
           userId={userToMod || ""}
           refetch={users.refetch}
+        />
+      )}
+      {showUserDetails && (
+        <UserDetails
+          isOpen={showUserDetails}
+          onClose={() => setShowUserDetails(false)}
+          userId={userToMod || ""}
         />
       )}
     </Box>

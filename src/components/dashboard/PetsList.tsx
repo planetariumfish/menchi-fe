@@ -99,7 +99,7 @@ const PetsList = (props: Props) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const users = useQuery(
+  const pets = useQuery(
     ["allPets"],
     async () => {
       const result = await axios.get("/pets/all");
