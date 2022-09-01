@@ -113,7 +113,7 @@ const UsersList = () => {
     },
     {
       onSuccess: (data) => {
-        setAllUsers(data);
+        setAllUsers(data.users);
       },
     }
   );

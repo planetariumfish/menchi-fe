@@ -37,8 +37,8 @@ const PetCard = ({ pet }: Props) => {
   const bookmark = useMutation(
     (data: Bookmark) => {
       // this is only accessible when user !== null
-      if (!isBookmarked) return axios.post(`/pets/${user!.id}/save`, data);
-      else return axios.delete(`/pets/${user!.id}/save`);
+      if (!isBookmarked) return axios.post(`/pets/${pet.id}/save`, data);
+      else return axios.delete(`/pets/${pet.id}/save`);
     },
     {
       onSuccess: (response) => {

@@ -22,7 +22,7 @@ const Favorites = (props: Props) => {
     },
     {
       onSuccess: (data) => {
-        setPets(data);
+        setPets(data.pets);
       },
       enabled: bookmarks.length > 0,
     }

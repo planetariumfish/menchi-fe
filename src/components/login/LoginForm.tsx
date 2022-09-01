@@ -42,7 +42,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
     }
   );
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     const result = LoginInfoSchema.safeParse(loginInfo);
     if (!result.success) {
       // do something to handle the error
@@ -76,6 +76,9 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
               onChange={(e) => {
                 setLoginInfo({ ...loginInfo, password: e.target.value });
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleLogin();
+              }}
             />
           </FormControl>
         </VStack>
@@ -84,13 +87,7 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
       <ModalFooter>
         <FormToggle toggle={toggle} hasAccount={hasAccount} />
         <Spacer />
-        <Button
-          onClick={async () => {
-            await handleLogin();
-          }}
-        >
-          Login
-        </Button>
+        <Button onClick={handleLogin}>Login</Button>
       </ModalFooter>
     </>
   );
