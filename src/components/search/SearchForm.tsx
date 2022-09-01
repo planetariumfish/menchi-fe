@@ -15,6 +15,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   Tooltip,
+  FormHelperText,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
@@ -46,6 +47,12 @@ const SearchForm = ({ onSearch }: Props) => {
     {
       onSuccess: (response) => {
         onSearch(response.data.pets);
+        setSearchInfo({
+          ...searchInfo,
+          height: [0, 0],
+          weight: [0, 0],
+          query: "",
+        });
       },
     }
   );
@@ -91,6 +98,7 @@ const SearchForm = ({ onSearch }: Props) => {
                 onChange={(value: Status) =>
                   setSearchInfo({ ...searchInfo, status: value })
                 }
+                value={searchInfo.status}
               >
                 <HStack spacing="2rem">
                   <Radio colorScheme="teal" value={""}>
@@ -194,20 +202,41 @@ const SearchForm = ({ onSearch }: Props) => {
                 <FormLabel>Query:</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Enter search terms separated by commas."
+                  placeholder="Search by breed, color, name, tags..."
                   onChange={(e) =>
                     setSearchInfo({ ...searchInfo, query: e.target.value })
                   }
                   onKeyDown={(e) => {
                     if (e.key === "Enter") mutate(searchInfo);
                   }}
+                  value={searchInfo.query}
                 />
               </HStack>
+              <FormHelperText>
+                Enter search terms separated by commas. Tags and dietary
+                requirements are an exact match.
+              </FormHelperText>
             </FormControl>
           </VStack>
         )}
       </Box>
-      <Button onClick={() => mutate(searchInfo)}>Search</Button>
+      <HStack gap={3}>
+        <Button
+          onClick={() =>
+            setSearchInfo({
+              ...searchInfo,
+              animalType: "",
+              status: "",
+              height: [0, 0],
+              weight: [0, 0],
+              query: "",
+            })
+          }
+        >
+          Reset
+        </Button>
+        <Button onClick={() => mutate(searchInfo)}>Search</Button>
+      </HStack>
     </VStack>
   );
 };

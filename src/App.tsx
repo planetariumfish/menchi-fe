@@ -14,22 +14,17 @@ import Search from "./pages/Search";
 import useBookmarkStore from "./contexts/bookmarkStore";
 import Favorites from "./pages/Favorites";
 import OwnedPets from "./pages/OwnedPets";
-import usePetStore from "./contexts/petStore";
 
 function App() {
   const { user } = React.useContext(ActiveUser);
   const loadBookmarks = useBookmarkStore((state) => state.load);
   const resetBookmarks = useBookmarkStore((state) => state.reset);
-  const loadPets = usePetStore((state) => state.load);
-  const resetPets = usePetStore((state) => state.reset);
 
   React.useEffect(() => {
     if (user) {
       loadBookmarks(user.id);
-      loadPets(user.id);
     } else {
       resetBookmarks();
-      resetPets();
     }
   }, [user]);
 

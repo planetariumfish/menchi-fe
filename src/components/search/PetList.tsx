@@ -1,4 +1,4 @@
-import { Center, Wrap, WrapItem } from "@chakra-ui/react";
+import { Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { Pet } from "../../types/types";
 import PetCard from "./PetCard";
 
@@ -9,11 +9,16 @@ type Props = {
 const PetList = ({ pets }: Props) => {
   return (
     <Wrap>
-      {pets.map((pet) => (
-        <WrapItem key={pet.id}>
-          <PetCard pet={pet} />
-        </WrapItem>
-      ))}
+      {" "}
+      {pets.length > 0 ? (
+        pets.map((pet) => (
+          <WrapItem key={pet.id}>
+            <PetCard pet={pet} />
+          </WrapItem>
+        ))
+      ) : (
+        <Text as="i">No pets found</Text>
+      )}
     </Wrap>
   );
 };

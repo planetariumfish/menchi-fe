@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -217,7 +218,7 @@ const EditPet = ({ onClose, isOpen, pet, refetch }: EditProps) => {
                   </HStack>
                 </FormControl>
                 <HStack width="100%">
-                  <FormControl isRequired>
+                  <FormControl>
                     <HStack>
                       <FormLabel htmlFor="height" mb={0}>
                         Height in cm
@@ -237,7 +238,7 @@ const EditPet = ({ onClose, isOpen, pet, refetch }: EditProps) => {
                       />
                     </HStack>
                   </FormControl>
-                  <FormControl isRequired>
+                  <FormControl>
                     <HStack>
                       <Spacer />
                       <FormLabel htmlFor="weight" mb={0}>
@@ -258,6 +259,23 @@ const EditPet = ({ onClose, isOpen, pet, refetch }: EditProps) => {
                       />
                     </HStack>
                   </FormControl>
+                </HStack>
+                <HStack align="baseline" width="100%">
+                  <FormLabel htmlFor="hypoallergenic">
+                    Hypoallergenic?
+                  </FormLabel>
+                  <Checkbox
+                    colorScheme="yellow"
+                    name="hypoallergenic"
+                    isChecked={updatedPetInfo.hypoallergenic}
+                    onChange={(e) =>
+                      setUpdatedPetInfo({
+                        ...updatedPetInfo,
+                        hypoallergenic: e.target.checked,
+                      })
+                    }
+                  />
+                  <Spacer />
                 </HStack>
                 <FormControl>
                   <HStack align="baseline">
