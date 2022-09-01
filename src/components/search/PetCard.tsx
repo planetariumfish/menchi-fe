@@ -8,6 +8,7 @@ import {
   Image,
   Text,
   useToast,
+  VisuallyHidden,
   VStack,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
@@ -55,7 +56,7 @@ const PetCard = ({ pet }: Props) => {
 
   return (
     <Box
-      maxW="xs"
+      w="xs"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -78,11 +79,26 @@ const PetCard = ({ pet }: Props) => {
           {isBookmarked ? <BsHeartFill /> : <BsHeart />}
         </Box>
       )}
-      <Image src={pet.picture} alt={`${pet.name} the ${pet.type}`} />
+      <Box
+        height="12rem"
+        overflow="hidden"
+        bg="brand.Cultured"
+        bgImage={pet.picture}
+        bgPos="center"
+        bgSize="cover"
+        bgRepeat="no-repeat"
+      >
+        <VisuallyHidden>{`${pet.name} the ${pet.type}`}</VisuallyHidden>
+      </Box>
       <Box p={3}>
         <Center>
           <VStack width="100%">
-            <Heading size="md" textAlign="center" color="brand.Keppel">
+            <Heading
+              size="md"
+              textAlign="center"
+              color="brand.Keppel"
+              noOfLines={1}
+            >
               {pet.name}
             </Heading>
             <Text>
