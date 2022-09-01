@@ -22,9 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
-
-const PetsList = (props: Props) => {
+const PetsList = () => {
   const [allPets, setAllPets] = React.useState<Pet[]>([]);
   const navigate = useNavigate();
   const columnHelper = React.useMemo(() => createColumnHelper<Pet>(), []);

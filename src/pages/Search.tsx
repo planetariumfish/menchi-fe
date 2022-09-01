@@ -1,22 +1,4 @@
-import {
-  Button,
-  Center,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  HStack,
-  IconButton,
-  Input,
-  Radio,
-  RadioGroup,
-  Spacer,
-  Switch,
-  VisuallyHidden,
-  VStack,
-  Text,
-} from "@chakra-ui/react";
-
+import { Center, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import PetList from "../components/search/PetList";
 import SearchForm from "../components/search/SearchForm";

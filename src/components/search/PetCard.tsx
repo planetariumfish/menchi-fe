@@ -1,11 +1,8 @@
 import {
-  AspectRatio,
   Badge,
   Box,
-  Button,
   Center,
   Heading,
-  Image,
   Text,
   useToast,
   VisuallyHidden,

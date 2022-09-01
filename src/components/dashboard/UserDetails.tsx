@@ -22,7 +22,6 @@ import React from "react";
 import { ModalProps, Pet, User } from "../../types/types";
 import { FaCheck } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import PetList from "../search/PetList";
 import UserPets from "./UserPets";
 
 type UserModalProps = ModalProps & {

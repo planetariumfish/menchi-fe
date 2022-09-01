@@ -2,7 +2,6 @@ import { Button, ButtonGroup, useToast, Text, HStack } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { ActiveUser } from "../../contexts/contexts";
-import { Pet } from "../../schemas/pet.zod";
 import { Status } from "../../types/enums";
 import axios from "../../utils/axiosClient";
 import ConfirmGetPet from "./ConfirmGetPet";

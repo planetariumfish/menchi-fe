@@ -11,11 +11,9 @@ import {
   Text,
   Divider,
   HStack,
-  Spacer,
   Box,
   useToast,
   SimpleGrid,
-  Spinner,
   Button,
 } from "@chakra-ui/react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";

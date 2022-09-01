@@ -25,10 +25,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "../../utils/axiosClient";
 import React from "react";
 import { ModalProps, Pet, UpdatedPet } from "../../types/types";
-import {
-  Pet as PetSchema,
-  UpdatedPet as UpdatedPetSchema,
-} from "../../schemas/pet.zod";
+import { UpdatedPet as UpdatedPetSchema } from "../../schemas/pet.zod";
 import FilePicker from "chakra-ui-file-picker";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import TagList from "../misc/TagList";

@@ -16,9 +16,7 @@ import { useNavigate } from "react-router-dom";
 import UploadAvatar from "../components/profile/UploadAvatar";
 import { ActiveUser } from "../contexts/contexts";
 
-type Props = {};
-
-const Profile = (props: Props) => {
+const Profile = () => {
   const { user } = React.useContext(ActiveUser);
   const navigate = useNavigate();
   const [uploadAvatar, setUploadAvatar] = React.useState(false);

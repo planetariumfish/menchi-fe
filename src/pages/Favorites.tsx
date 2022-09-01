@@ -7,9 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Pet } from "../types/types";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
-
-const Favorites = (props: Props) => {
+const Favorites = () => {
   const bookmarks = useBookmarkStore((state) => state.bookmarks);
   const navigate = useNavigate();
   const [pets, setPets] = React.useState<Pet[]>([]);

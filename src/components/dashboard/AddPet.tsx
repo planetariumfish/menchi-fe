@@ -25,7 +25,7 @@ import FilePicker from "chakra-ui-file-picker";
 import axios from "../../utils/axiosClient";
 import React from "react";
 import { AnimalType } from "../../types/enums";
-import { ModalProps, Pet, NewPet } from "../../types/types";
+import { ModalProps, NewPet } from "../../types/types";
 import TagList from "../misc/TagList";
 import AnimalButtons from "../pets/AnimalButtons";
 import { NewPet as NewPetSchema } from "../../schemas/pet.zod";

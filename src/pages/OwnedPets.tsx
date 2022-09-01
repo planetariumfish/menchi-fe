@@ -7,9 +7,7 @@ import { Pet } from "../types/types";
 import { ActiveUser } from "../contexts/contexts";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
-
-const OwnedPets = (props: Props) => {
+const OwnedPets = () => {
   const { user } = React.useContext(ActiveUser);
   const navigate = useNavigate();
   const [pets, setPets] = React.useState<Pet[]>([]);

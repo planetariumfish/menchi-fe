@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Grid,
-  Heading,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Center, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import AddPet from "../components/dashboard/AddPet";
 import PetsList from "../components/dashboard/PetsList";

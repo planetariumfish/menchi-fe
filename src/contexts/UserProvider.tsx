@@ -11,8 +11,6 @@ type Props = {
 const UserProvider = ({ children }: Props) => {
   const [user, setUser] = React.useState<User | null>(null);
   const [userId, setUserId] = React.useState<string | null>(null);
-  const [userPets, setUserPets] = React.useState<string[]>([]);
-  const queryClient = useQueryClient();
 
   React.useEffect(() => {
     const getUserOnLoad = async () => {
@@ -53,7 +51,6 @@ const UserProvider = ({ children }: Props) => {
         setUserId,
         isLoading,
         refetch,
-        userPets,
       }}
     >
       {children}
