@@ -15,6 +15,9 @@ import {
   VStack,
   ModalFooter,
   Box,
+  SimpleGrid,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "../../utils/axiosClient";
@@ -76,44 +79,48 @@ const UserDetails = ({ isOpen, onClose, userId }: UserModalProps) => {
             </Center>
           )}
           {user && (
-            <HStack gap={5} width="100%" align="start">
-              <Avatar
-                size="2xl"
-                bg="brand.RocketMetallic"
-                src={user.photo || ""}
-              />
-              <VStack align="flex-start" width="100%">
-                <HStack gap={2}>
-                  <Text as="b">Name:</Text>
-                  <Text display="inline">
-                    {user.firstname} {user.lastname || ""}
-                  </Text>
-                </HStack>
-                <HStack gap={2}>
-                  <Text as="b">Email:</Text>{" "}
-                  <Text display="inline">{user.email}</Text>
-                </HStack>
-                <HStack gap={2}>
-                  <Text as="b">Phone:</Text>
-                  <Text>{user.phone || <Text as="i">none</Text>}</Text>
-                </HStack>
-                <HStack gap={2} align="start">
-                  <Text as="b">Bio:</Text>
-                  {<Text>{user.bio}</Text> || <Text as="i">none</Text>}
-                </HStack>
-                <HStack gap={2}>
-                  <Text as="b">Can adopt a pet?</Text>
-                  {user.returned ? (
-                    <HStack>
-                      <IoClose aria-label="No" />
-                      <Button size="xs">Reset status</Button>
-                    </HStack>
-                  ) : (
-                    <FaCheck aria-label="Yes!" />
-                  )}
-                </HStack>
-              </VStack>
-            </HStack>
+            <Wrap spacing="2rem">
+              <WrapItem>
+                <Avatar
+                  size="2xl"
+                  bg="brand.RocketMetallic"
+                  src={user.photo || ""}
+                />
+              </WrapItem>
+              <WrapItem>
+                <VStack align="flex-start" width="100%">
+                  <HStack gap={2}>
+                    <Text as="b">Name:</Text>
+                    <Text display="inline">
+                      {user.firstname} {user.lastname || ""}
+                    </Text>
+                  </HStack>
+                  <HStack gap={2}>
+                    <Text as="b">Email:</Text>{" "}
+                    <Text display="inline">{user.email}</Text>
+                  </HStack>
+                  <HStack gap={2}>
+                    <Text as="b">Phone:</Text>
+                    <Text>{user.phone || <Text as="i">none</Text>}</Text>
+                  </HStack>
+                  <HStack gap={2} align="start">
+                    <Text as="b">Bio:</Text>
+                    {<Text>{user.bio}</Text> || <Text as="i">none</Text>}
+                  </HStack>
+                  <HStack gap={2}>
+                    <Text as="b">Can adopt a pet?</Text>
+                    {user.returned ? (
+                      <HStack>
+                        <IoClose aria-label="No" />
+                        <Button size="xs">Reset status</Button>
+                      </HStack>
+                    ) : (
+                      <FaCheck aria-label="Yes!" />
+                    )}
+                  </HStack>
+                </VStack>
+              </WrapItem>
+            </Wrap>
           )}
           {getPets.isLoading && <Spinner />}
           <Box height="2rem" />

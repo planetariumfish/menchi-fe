@@ -71,7 +71,7 @@ const UsersList = () => {
           const value = info.getValue();
           return value ? (
             // add button to reset here
-            <Text color="brand.Bittersweet">value</Text>
+            <Text color="brand.Bittersweet">Yes</Text>
           ) : (
             <Text color="brand.Keppel">No</Text>
           );

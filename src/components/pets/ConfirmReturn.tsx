@@ -14,6 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "../../utils/axiosClient";
 import React from "react";
 import { ModalProps } from "../../types/types";
+import { ActiveUser } from "../../contexts/contexts";
 
 type ConfirmProps = ModalProps & {
   petId: string | undefined;
@@ -21,6 +22,7 @@ type ConfirmProps = ModalProps & {
 };
 
 const ConfirmReturn = ({ onClose, isOpen, petId, refetch }: ConfirmProps) => {
+  const { user, setUser } = React.useContext(ActiveUser);
   const toast = useToast();
 
   const returnPet = useMutation(
@@ -35,6 +37,7 @@ const ConfirmReturn = ({ onClose, isOpen, petId, refetch }: ConfirmProps) => {
           duration: 9000,
           isClosable: true,
         });
+        if (setUser && user) setUser({ ...user, returned: new Date() });
         onClose();
         refetch();
       },

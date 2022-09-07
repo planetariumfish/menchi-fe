@@ -61,7 +61,7 @@ const ProfileEdit = () => {
       <VStack gap={3} width="100%">
         <Heading color="brand.Bittersweet">Profile Settings</Heading>
         {user && (
-          <VStack width="60%" gap={5}>
+          <VStack width="80%" gap={5}>
             <FormControl>
               <FormLabel htmlFor="firstname">First name</FormLabel>
               <Input

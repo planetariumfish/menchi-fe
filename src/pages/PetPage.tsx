@@ -17,6 +17,7 @@ import {
   Button,
   Wrap,
   WrapItem,
+  Spacer,
 } from "@chakra-ui/react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { ActiveUser } from "../contexts/contexts";
@@ -77,7 +78,7 @@ const PetPage = () => {
     <Center>
       {pet && (
         <VStack gap={3} width="80%" position="relative">
-          <Wrap>
+          <Wrap width="100%">
             {user && user.role === "ADMIN" && (
               <WrapItem>
                 <Box>
@@ -85,10 +86,11 @@ const PetPage = () => {
                 </Box>
               </WrapItem>
             )}
-            <WrapItem>
+            <WrapItem width="100%">
               <Heading color="brand.Bittersweet" size="2xl">
                 {pet.name}
               </Heading>
+              <Spacer />
               <Box
                 onClick={() => {
                   if (!user) {
