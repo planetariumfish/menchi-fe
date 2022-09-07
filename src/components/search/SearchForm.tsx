@@ -61,35 +61,42 @@ const SearchForm = ({ onSearch }: Props) => {
   return (
     <VStack>
       <HStack gap={5}>
-        <Wrap>
-          <HStack gap={2} width="100%">
-            <Button
-              size="lg"
-              colorScheme={searchInfo.animalType === "" ? "yellow" : "gray"}
-              onClick={() => setSearchInfo({ ...searchInfo, animalType: "" })}
-            >
-              ALL
-            </Button>
+        <Wrap spacing="1rem">
+          <WrapItem>
+            <HStack gap={2} width="100%">
+              <Button
+                size="lg"
+                colorScheme={searchInfo.animalType === "" ? "yellow" : "gray"}
+                onClick={() => setSearchInfo({ ...searchInfo, animalType: "" })}
+              >
+                ALL
+              </Button>
 
-            <AnimalButtons
-              onClick={(selected) =>
-                setSearchInfo({ ...searchInfo, animalType: selected })
-              }
-              selected={searchInfo.animalType}
-            />
-          </HStack>
-          <FormControl width="content">
-            <FormLabel mb={0} width="8ch">
-              {searchInfo.advanced ? "Advanced" : "Simple"}
-            </FormLabel>
-            <Switch
-              colorScheme="teal"
-              isChecked={searchInfo.advanced}
-              onChange={() =>
-                setSearchInfo({ ...searchInfo, advanced: !searchInfo.advanced })
-              }
-            />
-          </FormControl>
+              <AnimalButtons
+                onClick={(selected) =>
+                  setSearchInfo({ ...searchInfo, animalType: selected })
+                }
+                selected={searchInfo.animalType}
+              />
+            </HStack>
+          </WrapItem>
+          <WrapItem>
+            <FormControl width="content">
+              <FormLabel mb={0} width="8ch">
+                {searchInfo.advanced ? "Advanced" : "Simple"}
+              </FormLabel>
+              <Switch
+                colorScheme="teal"
+                isChecked={searchInfo.advanced}
+                onChange={() =>
+                  setSearchInfo({
+                    ...searchInfo,
+                    advanced: !searchInfo.advanced,
+                  })
+                }
+              />
+            </FormControl>
+          </WrapItem>
         </Wrap>
       </HStack>
 

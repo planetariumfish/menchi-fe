@@ -1,5 +1,5 @@
-import { Wrap, WrapItem } from "@chakra-ui/react";
-import React from "react";
+import { Box, Tooltip, Wrap, WrapItem } from "@chakra-ui/react";
+import React, { LegacyRef, Ref } from "react";
 import { FaQuestion } from "react-icons/fa";
 import {
   GiSittingDog,
