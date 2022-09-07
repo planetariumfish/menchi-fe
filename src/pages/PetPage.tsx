@@ -15,6 +15,8 @@ import {
   useToast,
   SimpleGrid,
   Button,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { ActiveUser } from "../contexts/contexts";
@@ -75,33 +77,36 @@ const PetPage = () => {
     <Center>
       {pet && (
         <VStack gap={3} width="80%" position="relative">
-          <Heading color="brand.Bittersweet" size="2xl">
-            {pet.name}
-          </Heading>
-          <Box
-            position="absolute"
-            top={0}
-            right={0}
-            onClick={() => {
-              if (!user) {
-                setNotAUserAlert(true);
-                return;
-              } else bookmark.mutate({ userId: user?.id, petId: id! });
-            }}
-            className="clickable"
-          >
-            {isBookmarked ? (
-              <BsHeartFill size="45px" />
-            ) : (
-              <BsHeart size="45px" />
+          <Wrap>
+            {user && user.role === "ADMIN" && (
+              <WrapItem>
+                <Box>
+                  <Button onClick={() => setEditPet(true)}>Edit Pet</Button>
+                </Box>
+              </WrapItem>
             )}
-          </Box>
-          {user && user.role === "ADMIN" && (
-            <Box position="absolute" left={0} right={0}>
-              <Button onClick={() => setEditPet(true)}>Edit Pet</Button>
-            </Box>
-          )}
-          <SimpleGrid columns={[1, null, 2]} spacing="3rem">
+            <WrapItem>
+              <Heading color="brand.Bittersweet" size="2xl">
+                {pet.name}
+              </Heading>
+              <Box
+                onClick={() => {
+                  if (!user) {
+                    setNotAUserAlert(true);
+                    return;
+                  } else bookmark.mutate({ userId: user?.id, petId: id! });
+                }}
+                className="clickable"
+              >
+                {isBookmarked ? (
+                  <BsHeartFill size="45px" />
+                ) : (
+                  <BsHeart size="45px" />
+                )}
+              </Box>
+            </WrapItem>
+          </Wrap>
+          <SimpleGrid columns={[1, null, 2]} spacing={["0.5rem", null, "3rem"]}>
             <Box>
               <Center>
                 <Image

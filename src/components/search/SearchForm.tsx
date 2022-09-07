@@ -16,6 +16,8 @@ import {
   RangeSliderThumb,
   Tooltip,
   FormHelperText,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
@@ -59,36 +61,39 @@ const SearchForm = ({ onSearch }: Props) => {
   return (
     <VStack>
       <HStack gap={5}>
-        <HStack gap={2} width="100%">
-          <Button
-            size="lg"
-            colorScheme={searchInfo.animalType === "" ? "yellow" : "gray"}
-            onClick={() => setSearchInfo({ ...searchInfo, animalType: "" })}
-          >
-            ALL
-          </Button>
+        <Wrap>
+          <HStack gap={2} width="100%">
+            <Button
+              size="lg"
+              colorScheme={searchInfo.animalType === "" ? "yellow" : "gray"}
+              onClick={() => setSearchInfo({ ...searchInfo, animalType: "" })}
+            >
+              ALL
+            </Button>
 
-          <AnimalButtons
-            onClick={(selected) =>
-              setSearchInfo({ ...searchInfo, animalType: selected })
-            }
-            selected={searchInfo.animalType}
-          />
-        </HStack>
-        <FormControl width="content">
-          <FormLabel mb={0} width="8ch">
-            {searchInfo.advanced ? "Advanced" : "Simple"}
-          </FormLabel>
-          <Switch
-            colorScheme="teal"
-            isChecked={searchInfo.advanced}
-            onChange={() =>
-              setSearchInfo({ ...searchInfo, advanced: !searchInfo.advanced })
-            }
-          />
-        </FormControl>
+            <AnimalButtons
+              onClick={(selected) =>
+                setSearchInfo({ ...searchInfo, animalType: selected })
+              }
+              selected={searchInfo.animalType}
+            />
+          </HStack>
+          <FormControl width="content">
+            <FormLabel mb={0} width="8ch">
+              {searchInfo.advanced ? "Advanced" : "Simple"}
+            </FormLabel>
+            <Switch
+              colorScheme="teal"
+              isChecked={searchInfo.advanced}
+              onChange={() =>
+                setSearchInfo({ ...searchInfo, advanced: !searchInfo.advanced })
+              }
+            />
+          </FormControl>
+        </Wrap>
       </HStack>
-      <Box ref={parent} width="100%">
+
+      <Box ref={parent}>
         {searchInfo.advanced && (
           <VStack>
             <FormControl as="fieldset" mt={2}>
@@ -100,19 +105,37 @@ const SearchForm = ({ onSearch }: Props) => {
                 }
                 value={searchInfo.status}
               >
-                <HStack spacing="2rem">
-                  <Radio colorScheme="teal" value={""}>
-                    Any
-                  </Radio>
-                  <Radio colorScheme="teal" value={Status.AVAILABLE}>
-                    Available
-                  </Radio>
-                  <Radio colorScheme="teal" value={Status.FOSTERED}>
-                    Fostered
-                  </Radio>
-                  <Radio colorScheme="teal" value={Status.ADOPTED}>
-                    Adopted
-                  </Radio>
+                <HStack>
+                  <Wrap>
+                    <WrapItem>
+                      <Radio colorScheme="teal" value={""} me="1rem">
+                        Any
+                      </Radio>
+                      <Radio
+                        colorScheme="teal"
+                        value={Status.AVAILABLE}
+                        me="1rem"
+                      >
+                        Available
+                      </Radio>
+                    </WrapItem>
+                    <WrapItem>
+                      <Radio
+                        colorScheme="teal"
+                        value={Status.FOSTERED}
+                        me="1rem"
+                      >
+                        Fostered
+                      </Radio>
+                      <Radio
+                        colorScheme="teal"
+                        value={Status.ADOPTED}
+                        me="1rem"
+                      >
+                        Adopted
+                      </Radio>
+                    </WrapItem>
+                  </Wrap>
                 </HStack>
               </RadioGroup>
             </FormControl>
@@ -168,7 +191,6 @@ const SearchForm = ({ onSearch }: Props) => {
                   min={0}
                   max={60}
                   onChange={(weight: [number, number]) => {
-                    console.log(searchInfo.weight);
                     setSearchInfo({ ...searchInfo, weight });
                   }}
                 >

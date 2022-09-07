@@ -87,7 +87,9 @@ const LoginForm = ({ toggle, hasAccount, onClose }: Props) => {
       <ModalFooter>
         <FormToggle toggle={toggle} hasAccount={hasAccount} />
         <Spacer />
-        <Button onClick={handleLogin}>Login</Button>
+        <Button onClick={handleLogin} isLoading={login.isLoading}>
+          Login
+        </Button>
       </ModalFooter>
     </>
   );

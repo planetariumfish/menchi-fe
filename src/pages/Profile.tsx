@@ -8,6 +8,8 @@ import {
   Button,
   Spacer,
   Box,
+  SimpleGrid,
+  Flex,
 } from "@chakra-ui/react";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
@@ -30,16 +32,22 @@ const Profile = () => {
       <VStack gap={3} width="80%">
         <Heading color="brand.Bittersweet">Profile</Heading>
         {user && (
-          <HStack gap={5} width="60vw" align="start">
-            <Avatar
-              size="2xl"
-              bg="brand.RocketMetallic"
-              src={user.photo || ""}
-              onClick={() => {
-                handleAvatarEdit();
-              }}
-              className="clickable"
-            />
+          <SimpleGrid
+            columns={[1, null, 2]}
+            spacing={["2rem", null, "1rem"]}
+            width={["90%", null, "60%"]}
+          >
+            <Flex justify="center">
+              <Avatar
+                size="2xl"
+                bg="brand.RocketMetallic"
+                src={user.photo || ""}
+                onClick={() => {
+                  handleAvatarEdit();
+                }}
+                className="clickable"
+              />
+            </Flex>
             <VStack align="flex-start" width="100%">
               <HStack gap={2}>
                 <Text as="b">Name:</Text>
@@ -81,7 +89,7 @@ const Profile = () => {
                 </Button>
               </HStack>
             </VStack>
-          </HStack>
+          </SimpleGrid>
         )}
       </VStack>
       {uploadAvatar && (

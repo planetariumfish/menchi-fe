@@ -164,6 +164,7 @@ function SignupForm({ toggle, hasAccount, onClose }: Props) {
             if (canClose) onClose();
             // if (!invalid.email && !invalid.password) onClose();
           }}
+          isLoading={signup.isLoading}
         >
           Sign up!
         </Button>

@@ -4,9 +4,7 @@ import AddPet from "../components/dashboard/AddPet";
 import PetsList from "../components/dashboard/PetsList";
 import UsersList from "../components/dashboard/UsersList";
 
-type Props = {};
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const [addPet, setAddPet] = React.useState<boolean>(false);
   return (
     <VStack gap={3} mx="2rem">

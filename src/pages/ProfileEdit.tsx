@@ -23,7 +23,7 @@ import ChangePasswordForm from "../components/profile/ChangePasswordForm";
 import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = () => {
-  const { user } = React.useContext(ActiveUser);
+  const { user, setUser } = React.useContext(ActiveUser);
   const [updatedInfo, setUpdatedInfo] = React.useState(user);
   const navigate = useNavigate();
   const toast = useToast();
@@ -40,6 +40,7 @@ const ProfileEdit = () => {
           duration: 9000,
           isClosable: true,
         });
+        if (setUser) setUser(updatedInfo);
         navigate("/profile");
       },
     }

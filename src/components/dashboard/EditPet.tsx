@@ -16,6 +16,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Spacer,
   Textarea,
   useToast,
@@ -133,7 +134,7 @@ const EditPet = ({ onClose, isOpen, pet, refetch }: EditProps) => {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <HStack align="start" gap={3}>
+            <SimpleGrid columns={[1, null, 2]} spacing={["2rem", null, "1rem"]}>
               <Avatar
                 size="2xl"
                 bg="brand.RocketMetallic"
@@ -358,7 +359,7 @@ const EditPet = ({ onClose, isOpen, pet, refetch }: EditProps) => {
                   />
                 </FormControl>
               </VStack>
-            </HStack>
+            </SimpleGrid>
           </ModalBody>
           <ModalFooter>
             <Button onClick={handleEditPet}>Edit Pet</Button>

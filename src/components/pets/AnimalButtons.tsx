@@ -33,6 +33,8 @@ const AnimalButtons = ({ onClick, selected }: Props) => {
           onClick={onClick}
           icon={<GiCat />}
         />
+      </WrapItem>
+      <WrapItem gap={1}>
         <AnimalButton
           type={AnimalType.RAT}
           selected={selected}
@@ -60,6 +62,8 @@ const AnimalButtons = ({ onClick, selected }: Props) => {
           onClick={onClick}
           icon={<FerretIcon />}
         />
+      </WrapItem>
+      <WrapItem gap={1}>
         <AnimalButton
           type={AnimalType.OTHER}
           selected={selected}
