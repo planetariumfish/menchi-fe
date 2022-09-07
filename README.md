@@ -3,6 +3,8 @@
 Front-end part of the Full-Stack project for [ITC](https://github.com/israeltechchallenge).  
 [Back-End](https://github.com/planetariumfish/menchi-be) also available.
 
+[See the deploy!](https://fierce-shelf-28591.herokuapp.com/)
+
 ## Technologies
 
 Set up using:
@@ -23,22 +25,11 @@ Very much _in progress_.
 
 Done:
 
-- Homepage (logged out, and logged in)
-- Sign up and Log in modals (fully functional)
-- Logout
-- User menu
-- Search page advanced search form
-- User profile page (+ edit functionality, now with extra toast)
-- Users can now upload profile photo
-- Adopt/Foster/Return pet function
+- All functionality, responsive design.
 
 To do:
 
-- Toggle basic and advanced search
-- Change height/weight search input to ranges
-- Admin dashboard users functionality
-- Confirmation dialogues for adopt/foster
-- Refetching info for pet status on adopt/foster/return
+- Better form validation
 
 ## Known Issues
 
